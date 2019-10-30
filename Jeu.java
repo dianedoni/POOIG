@@ -21,16 +21,16 @@ public class Jeu extends Manche {
 	}
 	
 	
-	// Methode accessoire de verification
+	// Methode de verification afin de respecter les regles du jeu
+	
 	public boolean nbJoueurCorrect() { 
 		return nbJoueurs>=2 && nbJoueurs<=4;
 	}
 	
-	/*Des qu on a le nombre de joueurs, on determine le nombre de fabriques 
-	 * qu il faut, le jeu commence a se mettre en place
+	
+	/* Avec le nombre de joueur, on peut determiner le nombre de fabriques 
+	 * qui vont etre utilisees pendant une partie
 	 * */
-	
-	
 	public int nbFabrique(){
 		int n = 0;
 		if(nbJoueurs == 2) {
@@ -48,6 +48,10 @@ public class Jeu extends Manche {
 		return n;
 	}
 	
+	/*Ensuite, on remplit une liste de joueur avec le nombre de
+	 * joueurs donne en entree. Cette methode est une factorisation 
+	 * du code addPlayers
+	 * */
 	
 	public void remplirListe(LinkedList<Joueur> j) {
 		if(j.size() == 0) {
@@ -57,6 +61,10 @@ public class Jeu extends Manche {
 		}
 	}
 	
+	/*Afin de ne pas avoir un code trop compacte, je continue 
+	 * avec ma factorisation, et donc addPlayersAux va etre utile 
+	 * dans le cas ou la methode nbJoueurCorrect() est vrai
+	 */
 	public void addPlayersAux(LinkedList<Joueur> j) {
 		remplirListe(j);
 		int n = nbJoueurs;
@@ -71,6 +79,9 @@ public class Jeu extends Manche {
 	
 	
 	
+	/*Sinon on reprend depuis le debut et ce avec la methode
+	 * doNotAddPlayers(liste de joueurs)
+	 */
 	
 	public void doNotAddPlayers(LinkedList<Joueur> j) {
 		if(!nbJoueurCorrect()) {
@@ -78,6 +89,10 @@ public class Jeu extends Manche {
 			Jeu jeu = new Jeu();
 		}
 	}
+	
+	/*Enfin on a tous les elements necessaires
+	 * pour remplir la liste des joueurs avec addPlayers(liste de joueurs)
+	 * */
 	
 	public void addPlayers(LinkedList<Joueur> j) {
 		if(nbJoueurCorrect()) {
