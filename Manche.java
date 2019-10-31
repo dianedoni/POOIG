@@ -1,23 +1,28 @@
 import java.util.LinkedList;
 import java.util.Scanner;
+import java.util.Random;
 
 public class Manche {
 	protected LinkedList<Joueur> liste;
 	protected Fabrique fabrique;
 	protected int nbJoueurs;
+	protected Sac sac;
 	protected int n ;
 	/* pour recuperer le nombre de joueurs et pouvoir 
 	l utiliser sans toutefois avoir besoin du Scanner*/
 	
 	public Manche() {
 		liste = new LinkedList<Joueur>();
+		sac = new Sac();
 	}
 	
 	public void commence() {
 		fabrique = new Fabrique();
 		fabrique.m.affichage();
-		fabrique.afficheFabrique();
+		fabrique.remplirFabrique();
+		//System.out.println("Le premier joueur est " +  firstPlayer());
 	}
+	
 	
 	public void affichage() {
 		Scanner sc = new Scanner(System.in); 
@@ -64,6 +69,11 @@ public class Manche {
 			}
 		}
 		
+		/*public void afficheNoms(LinkedList<Joueur> j) {
+			for(int i=0;i<j.size();i++) {
+				System.out.println(j.get(i).nom);
+			}
+		}*/
 		
 		
 		/*Sinon on reprend depuis le debut et ce avec la methode
@@ -87,6 +97,12 @@ public class Manche {
 			} else {
 				doNotAddPlayers(j);
 			}
+		}
+		
+		//On choisit aleatoirement le premier joueur au debut de chaque partie
+		public String firstPlayer() {
+			int a = (int)((Math.random() * (n)));
+			return this.liste.get(a).nom;
 		}
 		
 		

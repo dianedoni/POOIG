@@ -3,11 +3,11 @@ import java.util.Random;
 
 public class Fabrique {
 	protected LinkedList<Tuiles> centreDeTable;
-	protected LinkedList<int[]> tableaux;
+	protected LinkedList<Tuiles[]> tableaux;
 	protected Manche m ;
 	
 	public Fabrique() {
-		tableaux = new LinkedList<int[]>();
+		tableaux = new LinkedList<Tuiles[]>();
 		centreDeTable = new LinkedList<Tuiles>();
 		m = new Manche();
 	}
@@ -59,22 +59,32 @@ public class Fabrique {
 		int n = nbFabrique();
 		if(n == 5) {
 			for(int i=0;i<5;i++) {
-				tableaux.add(i, new int[4]);
+				tableaux.add(i, new Tuiles[4]);
 			}
 		}
 			
 	    if(n == 7) {
 		   for(int i=0;i<7;i++) {
-				tableaux.add(i, new int[4]);
+				tableaux.add(i, new Tuiles[4]);
 			}
 	    }
 	    
 		if(n == 9) {
 			for(int i=0;i<9;i++) {
-				tableaux.add(i, new int[4]);
+				tableaux.add(i, new Tuiles[4]);
 			}
 		}
 		
+	}
+	
+	
+	
+	public void affichage() {
+		for(int i=0;i<tableaux.size();i++){
+			for(int j=0;j<tableaux.get(i).length;j++) {
+				//color();
+			}
+		}
 	}
 	
 	/* Min + (Math.random() * (Max - Min))*/
@@ -83,23 +93,38 @@ public class Fabrique {
 		int n = nbFabrique();
 		createFabrique();
 		for(int i=0;i<n;i++) {
-			tableaux.get(i);
 			for(int j=0;j<4;j++) {
-				tableaux.get(i)[j] = (int) (2 + (Math.random() * (6 - 2)));
+				int a = (int) (2 + (Math.random() * (6 - 2)));
+				tableaux.get(i)[j] = new Tuiles();
+				tableaux.get(i)[j].setNbre(a);
+				tableaux.get(i)[j].findColor(a);
 			}
+			
 		}
+	
 	}
 	
-	public void afficheFabrique() {
+	public void remplirFabrique() {
+		if(m.nbJoueurCorrect()) {
+		System.out.println();
+		System.out.println("Le jeu va commencer. Manche ....");
+		System.out.println("On dispose des fabriques suivantes");
 		remplissage();
 		for(int i=0;i<nbFabrique();i++) {
-			tableaux.get(i);
+			System.out.print( i + "     ");
 			for(int j=0;j<4;j++) {
-				System.out.print(tableaux.get(i)[j] + " " );
+				System.out.print(tableaux.get(i)[j].couleur + " ");
 			}
 			System.out.println();
+			}
+		
+		
+		} else {
+			while(!m.nbJoueurCorrect()) {
+			m.affichage();
+			remplissage();
+			}
 		}
 	}
-	
 	
 }

@@ -2,7 +2,7 @@
 public class Objet {
 	
 	//Classe donnant la structure des tuiles
-	protected String couleur; 
+	protected String couleur;
 	protected int nbre;
 	
 	/*Un premier constructeur qui permet d initialiser aux 
@@ -29,4 +29,5 @@ public class Objet {
 	public int setNbre(int n) {
 		return this.nbre = n;
 	}
+	
 }
