@@ -13,8 +13,4 @@ public class Plateau {
 		return m.nbJoueurs;
 	}
 	
-	public void attributionPlateaux() {
-		
-	}
-	
 }

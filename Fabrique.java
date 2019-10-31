@@ -122,8 +122,7 @@ public class Fabrique {
 		} else {
 			while(!m.nbJoueurCorrect()) {
 			m.affichage();
-			remplissage();
-			}
+			remplirFabrique();			}
 		}
 	}
 	
