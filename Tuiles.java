@@ -34,7 +34,7 @@ public class Tuiles extends Objet {
 		}
 		
 		if(n == 6) {
-			this.couleur = "B";
+			this.couleur = "BL";
 		}
 	}
 	
@@ -45,5 +45,7 @@ public class Tuiles extends Objet {
 			objets.addLast(new Objet(c,n));
 		}
 	}
+	
+	
 	
 }

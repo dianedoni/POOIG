@@ -4,12 +4,11 @@ import java.util.Random;
 public class Fabrique {
 	protected LinkedList<Tuiles> centreDeTable;
 	protected LinkedList<Tuiles[]> tableaux;
-	protected Manche m ;
+	protected Manche m = new Manche() ;
 	
 	public Fabrique() {
 		tableaux = new LinkedList<Tuiles[]>();
 		centreDeTable = new LinkedList<Tuiles>();
-		m = new Manche();
 	}
 	
 	/*En fonction du nombre de joueurs on trouvele
@@ -77,15 +76,7 @@ public class Fabrique {
 		
 	}
 	
-	
-	
-	public void affichage() {
-		for(int i=0;i<tableaux.size();i++){
-			for(int j=0;j<tableaux.get(i).length;j++) {
-				//color();
-			}
-		}
-	}
+
 	
 	/* Min + (Math.random() * (Max - Min))*/
 	
@@ -94,7 +85,7 @@ public class Fabrique {
 		createFabrique();
 		for(int i=0;i<n;i++) {
 			for(int j=0;j<4;j++) {
-				int a = (int) (2 + (Math.random() * (6 - 2)));
+				int a = (int) (2 + (Math.random() * (7 - 2)));
 				tableaux.get(i)[j] = new Tuiles();
 				tableaux.get(i)[j].setNbre(a);
 				tableaux.get(i)[j].findColor(a);
@@ -106,6 +97,7 @@ public class Fabrique {
 	
 	public void remplirFabrique() {
 		if(m.nbJoueurCorrect()) {
+		m.addPlayers();
 		System.out.println();
 		System.out.println("Le jeu va commencer. Manche ....");
 		System.out.println("On dispose des fabriques suivantes");
@@ -121,9 +113,21 @@ public class Fabrique {
 		
 		} else {
 			while(!m.nbJoueurCorrect()) {
-			m.affichage();
-			remplirFabrique();			}
+			m.doNotAddPlayers();
+			}
+			remplirFabrique();	
 		}
+	}
+	
+	/*Apres avoir trouve le nombre de fabriques necessaires, on choisit aleatoirement 
+	 * le nom du premier joueur
+	 */
+	public String firstPlayer() {
+		System.out.println();
+		int a = (int)((Math.random() * (m.n + 1)));
+		System.out.print("La premiere tuile est aleatoirement attribue a ");
+		return m.liste.get(a).nom;
+		
 	}
 	
 }
