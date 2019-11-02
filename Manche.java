@@ -14,7 +14,7 @@ public class Manche {
 	
 	public Manche() {
 		liste = new LinkedList<Joueur>();
-		sac = new Sac();
+		sac = new Sac("rouge",2);
 	}
 	
 	public void commence() {
@@ -27,7 +27,7 @@ public class Manche {
 		System.out.println();
 		consignes();
 		
-		fabrique.m.liste.get(0).chooseTuile("",0);
+		fabrique.m.liste.get(0).chooseTuile();
 	}
 	
 	

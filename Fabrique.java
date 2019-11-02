@@ -76,24 +76,34 @@ public class Fabrique {
 		
 	}
 	
-
+	/*Permet de déterminer le nombre de tuiles
+	 * a utiliser au cours d une manche
+	 */
+	public int nombreDeTuilesAPlacer() {
+		return nbFabrique()*4;
+		
+	}
 	
 	/* Min + (Math.random() * (Max - Min))*/
 	
 	public void remplissage() {
 		int n = nbFabrique();
 		createFabrique();
+		int c = 0;
+		for(int a=1;a<nombreDeTuilesAPlacer()+1;a++) {
 		for(int i=0;i<n;i++) {
 			for(int j=0;j<4;j++) {
-				int a = (int) (2 + (Math.random() * (7 - 2)));
+				c = (int) (1+(Math.random() * (100)));
+				m.sac.tuiles.get(a).setPos(c);
 				tableaux.get(i)[j] = new Tuiles();
-				tableaux.get(i)[j].setNbre(a);
-				tableaux.get(i)[j].findColor(a);
+				tableaux.get(i)[j].setNbre(m.sac.numTuile(m.sac.tuiles.get(a).pos));
+				tableaux.get(i)[j].findColor(tableaux.get(i)[j].nbre);
+				}
 			}
-			
 		}
-	
 	}
+	
+	
 	
 	public void remplirFabrique() {
 		if(m.nbJoueurCorrect()) {
@@ -109,8 +119,7 @@ public class Fabrique {
 			}
 			System.out.println();
 			}
-		
-		
+		System.out.println("Il reste " + (m.sac.tuiles.size()-1) + " tuiles");
 		} else {
 			while(!m.nbJoueurCorrect()) {
 			m.doNotAddPlayers();
@@ -124,7 +133,7 @@ public class Fabrique {
 	 */
 	public String firstPlayer() {
 		System.out.println();
-		int a = (int)((Math.random() * (m.n + 1)));
+		int a = (int)(1+(Math.random() * (m.n-1)));
 		System.out.print("La premiere tuile est aleatoirement attribue a ");
 		return m.liste.get(a).nom;
 		
