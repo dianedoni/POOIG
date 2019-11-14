@@ -18,8 +18,8 @@ public class Joueur {
 		this.nom =  n;
 	}
 
-	public void chooseTuile(String c,int n) {
-		System.out.println("Entrez votre choix");
+	public void chooseTuile(String n) {
+		System.out.println("Entrez votre choix " + n + ":");
 		Scanner sc = new Scanner(System.in);
 		String s = "";
 		s = sc.nextLine();
@@ -43,9 +43,9 @@ public class Joueur {
 		}
 		
 		if(mosaique.size() == 0) {
-			mosaique.add(0, new Tuiles(c,n));
+			mosaique.add(0, new Tuiles());
 		} else {
-			mosaique.addLast(new Tuiles(c,n));
+			mosaique.addLast(new Tuiles());
 		}
 		
 	}

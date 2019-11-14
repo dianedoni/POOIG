@@ -4,8 +4,8 @@ import java.util.Random;
 public class Tuiles extends Objet {
 	protected LinkedList<Objet> objets;
 	
-	public Tuiles(String c, int n){
-		super(c,n);
+	public Tuiles(String c, int n,int pos){
+		super(c,n,pos);
 		this.objets = new LinkedList<Objet>();
 	}
 	
@@ -13,6 +13,7 @@ public class Tuiles extends Objet {
 	public Tuiles() {	
 		this.couleur = "";
 		this.nbre = 0;
+		this.pos = 0;
 	}
 	
 	public void findColor(int n) {
@@ -38,11 +39,13 @@ public class Tuiles extends Objet {
 		}
 	}
 	
+	
+	
 	public void addTuile(String c,int n) {
 		if(objets.size() == 0) {
-			objets.add(0,new Objet(c,n));
+			objets.add(0,new Objet());
 		} else {
-			objets.addLast(new Objet(c,n));
+			objets.addLast(new Objet());
 		}
 	}
 	

@@ -11,10 +11,7 @@ public class Test {
 		//Jeu j = new Jeu();
 		Manche m = new Manche();
 		m.commence();
-		//m.affichage();
-		//Tuiles t = new Tuiles("rouge",2);
-		
-		//t.affiche(10);
+		//Plateau p = new Plateau("Diane");
 	
 	}
 }

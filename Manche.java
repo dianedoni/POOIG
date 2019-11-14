@@ -8,13 +8,14 @@ public class Manche {
 	protected int nbJoueurs;
 	protected Sac sac;
 	protected int n ;
+	protected LinkedList<Plateau> plateaux;
 	
 	/* pour recuperer le nombre de joueurs et pouvoir 
 	l utiliser sans toutefois avoir besoin du Scanner*/
 	
 	public Manche() {
 		liste = new LinkedList<Joueur>();
-		sac = new Sac();
+		sac = new Sac("rouge",2);
 	}
 	
 	public void commence() {
@@ -22,12 +23,14 @@ public class Manche {
 		fabrique.m.affichage();
 		fabrique.remplirFabrique();
 		//fabrique.m.addPlayers();
+		String first = fabrique.firstPlayer();
 	
-		System.out.println(fabrique.firstPlayer());
+		System.out.println("Le premier joueur sera " + first);
 		System.out.println();
+		attributionPlateaux();
 		consignes();
 		
-		fabrique.m.liste.get(0).chooseTuile("",0);
+		fabrique.m.liste.get(0).chooseTuile(first);
 	}
 	
 	
@@ -103,5 +106,15 @@ public class Manche {
 			System.out.println("Mis a part cela, indiquez aussi un nombre entre 2 et 6 specifiques respectivement"
 					+ " aux tuiles {R,J,B,N,BL}");
 			System.out.println();
+		}
+		
+		public void attributionPlateaux() {
+			System.out.println("Les joueurs ont donc leurs plateaux pour la construction");
+			plateaux = new LinkedList<Plateau>();
+			for(int i=0;i<fabrique.m.nbJoueurs;i++) {
+				System.out.println(fabrique.m.liste.get(i).nom);
+				new Plateau(fabrique.m.liste.get(i).nom);
+				System.out.println();
+			}
 		}
 }
