@@ -4,11 +4,14 @@ public class Plateau {
 	protected String proprietaire;
 	protected String [] s = new String[5];
 	protected String[] mos = {"[bl]","[j]","[r]","[n]","[b]"};
+	protected Defausse def;
 	
 	public Plateau(String s) {
 		this.proprietaire = s;
 		affichePlateau();
 		System.out.println();
+		def = new Defausse(s);
+		
 	}
 
 	public int nbrePlateaux() {
@@ -92,6 +95,7 @@ public class Plateau {
 		for(int i=0;i<mos.length;i++) {
 			System.out.print(mos[i] + " ");
 		}
+		System.out.println();
 	}
 	
 	public void affichePlateau() {

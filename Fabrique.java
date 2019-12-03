@@ -2,13 +2,12 @@ import java.util.LinkedList;
 import java.util.Random;
 
 public class Fabrique {
-	protected LinkedList<Tuiles> centreDeTable;
+	protected String [] centreDeTable;
 	protected LinkedList<Tuiles[]> tableaux;
 	protected Manche m = new Manche() ;
 	
 	public Fabrique() {
 		tableaux = new LinkedList<Tuiles[]>();
-		centreDeTable = new LinkedList<Tuiles>();
 	}
 	
 	/*En fonction du nombre de joueurs on trouvele
@@ -78,6 +77,7 @@ public class Fabrique {
 	
 	/*Permet de déterminer le nombre de tuiles
 	 * a utiliser au cours d une manche
+	 * pour pouvoir 
 	 */
 	public int nombreDeTuilesAPlacer() {
 		return nbFabrique()*4;
@@ -87,29 +87,33 @@ public class Fabrique {
 	/* Min + (Math.random() * (Max - Min))*/
 	
 	public void remplissage() {
-		int n = nbFabrique();
-		createFabrique();
+		int n = nbFabrique(); // trouvons le nombre de fabrique
+		createFabrique(); // Ensuite, on crée des fabriques
+		int e = 100;
 		int c = 0;
-		for(int a=1;a<nombreDeTuilesAPlacer()+1;a++) {
-		for(int i=0;i<n;i++) {
-			for(int j=0;j<4;j++) {
-				c = (int) (1+(Math.random() * (100)));
-				m.sac.tuiles.get(a).setPos(c);
-				tableaux.get(i)[j] = new Tuiles();
-				tableaux.get(i)[j].setNbre(m.sac.numTuile(m.sac.tuiles.get(a).pos));
-				tableaux.get(i)[j].findColor(tableaux.get(i)[j].nbre);
+		for(int a=1;a<nombreDeTuilesAPlacer()+1;a++) {	
+			for(int i=0;i<n;i++) {	
+				for(int j=0;j<4;j++) {
+					c = (int) (1+(Math.random() * (e)));
+					m.sac.tuiles.get(a).setPos(c);
+					tableaux.get(i)[j] = new Tuiles();
+					tableaux.get(i)[j].setNbre(m.sac.numTuile(m.sac.tuiles.get(c).pos));
+					tableaux.get(i)[j].findColor(tableaux.get(i)[j].nbre);	
 				}
+			
 			}
+		e--;
+		m.sac.remove(c);
 		}
+
 	}
-	
 	
 	
 	public void remplirFabrique() {
 		if(m.nbJoueurCorrect()) {
 		m.addPlayers();
 		System.out.println();
-		System.out.println("Le jeu va commencer. Manche ....");
+		//System.out.println("Le jeu va commencer. Manche ....");
 		System.out.println("On dispose des fabriques suivantes");
 		remplissage();
 		for(int i=0;i<nbFabrique();i++) {
@@ -119,7 +123,7 @@ public class Fabrique {
 			}
 			System.out.println();
 			}
-		System.out.println("Il reste " + (m.sac.tuiles.size()-1) + " tuiles");
+		System.out.println("Il reste " + (m.sac.tuiles.size()-1) + " tuiles dans le sac");
 		} else {
 			while(!m.nbJoueurCorrect()) {
 			m.doNotAddPlayers();

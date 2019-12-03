@@ -16,7 +16,10 @@ public class Tuiles extends Objet {
 		this.pos = 0;
 	}
 	
-	public void findColor(int n) {
+	// Avec en argument un nombre compris entre 2 et 6 permet
+	//de trouver la tuile correspondante
+	
+	public void findColor(int n) {  
 		if(n == 2) {
 			this.couleur = "R";
 		}
@@ -49,6 +52,8 @@ public class Tuiles extends Objet {
 		}
 	}
 	
-	
+	public void removeTuile(char c,int n) {
+		
+	}
 	
 }

@@ -28,6 +28,8 @@ public class Manche {
 		System.out.println("Le premier joueur sera " + first);
 		System.out.println();
 		attributionPlateaux();
+		
+		System.out.println();
 		consignes();
 		
 		fabrique.m.liste.get(0).chooseTuile(first);

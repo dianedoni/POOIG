@@ -36,4 +36,5 @@ public class Objet {
 	public int setPos(int n) {
 		return this.pos = n;
 	}
+	
 }

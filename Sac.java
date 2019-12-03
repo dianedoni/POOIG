@@ -135,8 +135,8 @@ public class Sac extends Tuiles{
 		tuiles.remove(i);
 	}
 	
-	
-	public void pioche() {
+	// Gere les tours successifs du jeu
+	public void nTour() {
 		
 	}
 }

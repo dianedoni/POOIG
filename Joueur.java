@@ -1,7 +1,7 @@
 import java.util.LinkedList;
 import java.util.Scanner;
 
-public class Joueur {
+public class Joueur implements ChoixTuiles {
 	protected String nom; // afin de pouvoir distinguer les joueurs et leur plateau
 	protected LinkedList<Tuiles> mosaique;
 	protected int score;
