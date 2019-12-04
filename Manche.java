@@ -31,8 +31,10 @@ public class Manche {
 		
 		System.out.println();
 		consignes();
-		
-		fabrique.m.liste.get(0).chooseTuile(first);
+			
+		fabrique.afficheFApresChoix();
+		System.out.println();
+		System.out.println("Au joueur suivant de jouer.");
 	}
 	
 	
@@ -63,7 +65,7 @@ public class Manche {
 			Scanner sc = new Scanner(System.in);
 			if(liste.size() == 0) {
 				for(int i=0;i<nbJoueurs;i++) {
-					System.out.println("Le nom du joueur " + i + " est");
+					System.out.println("Le nom du joueur " + i + " est: ");
 					liste.add(i, new Joueur(""));
 					liste.get(i).setNom(sc.nextLine());
 				}
@@ -119,4 +121,5 @@ public class Manche {
 				System.out.println();
 			}
 		}
+		
 }

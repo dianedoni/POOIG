@@ -52,6 +52,30 @@ public class Tuiles extends Objet {
 		}
 	}
 	
+	public String findColor2(int n) {
+		String s = "";
+		if(n == 2) {
+			s = "R";
+		}
+		
+		if(n == 3) {
+			s = "J";
+		}
+		
+		if(n == 4) {
+			s = "B";
+		}
+		
+		if(n == 5) {
+			s = "N";
+		}
+		
+		if(n == 6) {
+			s = "BL";
+		}
+		return s;
+	}
+	
 	public void removeTuile(char c,int n) {
 		
 	}
