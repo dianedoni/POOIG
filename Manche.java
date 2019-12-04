@@ -24,8 +24,7 @@ public class Manche {
 		fabrique.remplirFabrique();
 		//fabrique.m.addPlayers();
 		String first = fabrique.firstPlayer();
-	
-		System.out.println("Le premier joueur sera " + first);
+		
 		System.out.println();
 		attributionPlateaux();
 		
@@ -34,11 +33,15 @@ public class Manche {
 			
 		fabrique.afficheFApresChoix();
 		System.out.println();
+		
 		System.out.println("Au joueur suivant de jouer.");
 	}
 	
 	
 	public void affichage() {
+		System.out.println("*********************************");
+		System.out.println("               AZUL              ");
+		System.out.println("*********************************");
 		Scanner sc = new Scanner(System.in); 
 	    System.out.println("Combien de joueurs pour cette partie?"); 
 	    nbJoueurs = sc.nextInt();
@@ -96,8 +99,11 @@ public class Manche {
 			}
 		}
 		
-		//On choisit aleatoirement le premier joueur au debut de chaque partie
-		
+		// Gere les tours successifs du jeu
+		public void nTour() {
+			
+		}
+
 		
 		public void consignes() {
 			System.out.println("***************Consignes***************");

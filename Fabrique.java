@@ -3,7 +3,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Fabrique {
-	protected LinkedList<Tuiles> centreDeTable = new LinkedList<>();
+	protected LinkedList<Tuiles> centreDeTable = new LinkedList<Tuiles>();
 	protected LinkedList<Tuiles[]> tableaux;
 	protected Manche m = new Manche() ;
 	
@@ -12,27 +12,25 @@ public class Fabrique {
 		tableaux = new LinkedList<Tuiles[]>();
 	}
 	
-	/*En fonction du nombre de joueurs on trouvele
+	/*En fonction du nombre de joueurs on trouve le
 	 * nombre de fabriques necessaires pour jouer
 	 */
 	
 	public int nbFabrique() {
 		int n = 0;
-		if(m.n == 2) {
-			n = n + 5;
-		}
+		if(m.n == 2) { n = n + 5; }
 		
-		if(m.n == 3) {
-			n = n + 7;
-		}
+		if(m.n == 3) { n = n + 7; }
 		
-		if(m.n == 4) {
-			n = n + 9;
-		}
+		if(m.n == 4) { n = n + 9; }
 		
 		return n;
 	}
 	
+	/*
+	 * Calcul en fonction de fabriques, le nombre 
+	 * de joueurs qu'il y a 
+	 */
 	public int nbreJoueurs() {
 		
 		int n = 0;
@@ -50,8 +48,8 @@ public class Fabrique {
 		return n;
 	}
 	
-	/*Les fabriques sont alors representes par des tableaux d entiers
-	 * qui representent les tuiles 2,3,4,5,6 respectivement : rouges
+	/*Les fabriques sont alors representes par des tableaux de tuiles
+	 * qui representent les tuiles R,J,B,N,BL respectivement : rouges
 	 * jaunes, bleues, noires et blanches
 	 * */
 	
@@ -79,7 +77,7 @@ public class Fabrique {
 	
 	/*Permet de déterminer le nombre de tuiles
 	 * a utiliser au cours d une manche
-	 * pour pouvoir 
+	 * pour pouvoir savoir le nombre de tuiles à distribuer dans une manche.
 	 */
 	public int nombreDeTuilesAPlacer() {
 		return nbFabrique()*4;
@@ -88,17 +86,16 @@ public class Fabrique {
 	
 	/* Min + (Math.random() * (Max - Min))*/
 	
-	public void remplissage(Sac s) {
+	public void remplissage() {
 		int n = nbFabrique(); // trouvons le nombre de fabrique
-		createFabrique(); // Ensuite, on crée des fabriques
-		int e = 100;
+		createFabrique(); // Ensuite, on crée des fabriques vides qu'on va remplir
+		int e = 100; 
 		int c = 0;
-		if(s.tuiles.size() == 101) {
+		if(m.sac.tuiles.size() == 101) {
 			for(int a=1;a<nombreDeTuilesAPlacer()+1;a++) {	
 				for(int i=0;i<n;i++) {	
 					for(int j=0;j<4;j++) {
 						c = (int) (1+(Math.random() * (e)));
-						m.sac.tuiles.get(a).setPos(c);
 						tableaux.get(i)[j] = new Tuiles();
 						tableaux.get(i)[j].setNbre(m.sac.numTuile(m.sac.tuiles.get(c).pos));
 						tableaux.get(i)[j].findColor(tableaux.get(i)[j].nbre);	
@@ -130,8 +127,8 @@ public class Fabrique {
 		if(m.nbJoueurCorrect()) {
 		m.addPlayers();
 		System.out.println();
-		System.out.println("On dispose des fabriques suivantes");
-		remplissage(m.sac);
+		System.out.println("On dispose les fabriques suivantes");
+		remplissage();
 		for(int i=0;i<nbFabrique();i++) {
 			System.out.print( i + "     ");
 			for(int j=0;j<4;j++) {
@@ -148,12 +145,13 @@ public class Fabrique {
 		}
 	}
 	
+	
 	/*Apres avoir trouve le nombre de fabriques necessaires, on choisit aleatoirement 
 	 * le nom du premier joueur
 	 */
 	public String firstPlayer() {
 		System.out.println();
-		int a = (int)(1+(Math.random() * (m.n-1)));
+		int a = (int)((Math.random() * (m.n)));
 		return m.liste.get(a).nom;
 		
 	}
@@ -161,7 +159,7 @@ public class Fabrique {
 	public void chooseTuile(String n) {
 		System.out.println("Entrez votre choix " + n + ":");
 		Scanner sc = new Scanner(System.in);
-		//String a = "";
+		Tuiles a = new Tuiles();
 		String s = "";
 		s = sc.nextLine();
 		if(s.charAt(1) == 'R') {
@@ -169,8 +167,9 @@ public class Fabrique {
 			for(int i=0;i<nbFabrique();i++) {
 				for(int j=0;j<4;j++) {
 					if(tableaux.get(i)[j].findColor2(s.charAt(2)) == "R" && i == s.charAt(0)) {
-						centreDeTable.add(tableaux.get(i)[j]);
-						tableaux.get(i)[j].setColor("vide");
+						a = tableaux.get(i)[j];
+						centreDeTable.add(a);
+						tableaux.get(i)[j] = new Tuiles();
 					}
 				}
 			}
@@ -182,9 +181,9 @@ public class Fabrique {
 			for(int i=0;i<nbFabrique();i++) {
 				for(int j=0;j<4;j++) {
 					if(tableaux.get(i)[j].findColor2(s.charAt(2)) == "J" && i == s.charAt(0)) {
-						centreDeTable.add(tableaux.get(i)[j]);
-						tableaux.get(i)[j].setColor("vide");
-					}
+						a = tableaux.get(i)[j];
+						centreDeTable.add(a);
+						tableaux.get(i)[j] = new Tuiles();					}
 				}
 			}
 		}
@@ -196,8 +195,9 @@ public class Fabrique {
 			for(int i=0;i<nbFabrique();i++) {
 				for(int j=0;j<4;j++) {
 					if(tableaux.get(i)[j].findColor2(s.charAt(2)) == "B" && i == s.charAt(0)) {
-						centreDeTable.add(tableaux.get(i)[j]);
-						tableaux.get(i)[j].setColor("vide");
+						a = tableaux.get(i)[j];
+						centreDeTable.add(a);
+						tableaux.get(i)[j] = new Tuiles();
 					}
 				}
 			}
@@ -208,9 +208,11 @@ public class Fabrique {
 			for(int i=0;i<nbFabrique();i++) {
 				for(int j=0;j<4;j++) {
 					if(tableaux.get(i)[j].findColor2(s.charAt(2)) == "N" && i == s.charAt(0)) {
-						centreDeTable.add(tableaux.get(i)[j]);
-						tableaux.get(i)[j].setColor("vide");
+						a = tableaux.get(i)[j];
+						centreDeTable.add(a);
+						tableaux.get(i)[j] = new Tuiles();
 					}
+
 				}
 			}
 		}
@@ -220,16 +222,19 @@ public class Fabrique {
 			for(int i=0;i<nbFabrique();i++) {
 				for(int j=0;j<4;j++) {
 					if(tableaux.get(i)[j].findColor2(s.charAt(3)) == "BL" && i == s.charAt(0)) {
-						centreDeTable.add(tableaux.get(i)[j]);
-						tableaux.get(i)[j].setColor("vide");			
+						a = tableaux.get(i)[j];
+						centreDeTable.add(a);
+						tableaux.get(i)[j] = new Tuiles();
 					}
 				}
 			}
 		}			
 	}
 	
+	
 	public void afficheFApresChoix() {
 		String first = firstPlayer();
+		System.out.println("Le premier joueur sera " + first);
 		chooseTuile(first);
 		for(int i=0;i<nbFabrique();i++) {
 			System.out.print( i + "     ");
@@ -237,6 +242,18 @@ public class Fabrique {
 				System.out.print(tableaux.get(i)[j].couleur + " ");
 			}
 			System.out.println();
+		}
+		System.out.println();
+		centreDeTable();
+	}
+	
+	public void centreDeTable() {
+		if(centreDeTable.size() == 0) {
+			System.out.println("Le centre de table est vide");
+		} else {
+		for(int i=0;i<centreDeTable.size();i++) {
+			System.out.print(centreDeTable.get(i) + " " );
+			}
 		}
 	}
 	

@@ -11,7 +11,7 @@ public class Tuiles extends Objet {
 	
 	
 	public Tuiles() {	
-		this.couleur = "";
+		this.couleur = "vide";
 		this.nbre = 0;
 		this.pos = 0;
 	}
@@ -25,8 +25,7 @@ public class Tuiles extends Objet {
 		}
 		
 		if(n == 3) {
-			this.couleur = "J";
-			
+			this.couleur = "J";	
 		}
 		
 		if(n == 4) {

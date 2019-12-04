@@ -8,7 +8,8 @@ public class Defausse {
 		
 		public Defausse(String n) {
 			afficheDefausse();
-			
+			System.out.println();
+			System.out.println("*******************************************");
 		}
 		
 		public void afficheDefausse() {
