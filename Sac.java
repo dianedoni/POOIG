@@ -119,7 +119,7 @@ public class Sac extends Tuiles{
 				n = n + 5;
 			}
 			
-			if(a>=81 && a<=102){
+			if(a>=81 && a<=101){
 				n = n + 6;
 			}
 		return n;

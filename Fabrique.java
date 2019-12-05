@@ -3,13 +3,14 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Fabrique {
-	protected LinkedList<Tuiles> centreDeTable = new LinkedList<Tuiles>();
 	protected LinkedList<Tuiles[]> tableaux;
 	protected Manche m = new Manche() ;
+	protected CentreDeTable centre;
 	
 	
 	public Fabrique() {
 		tableaux = new LinkedList<Tuiles[]>();
+		centre = new CentreDeTable();
 	}
 	
 	/*En fonction du nombre de joueurs on trouve le
@@ -98,8 +99,9 @@ public class Fabrique {
 						c = (int) (1+(Math.random() * (e)));
 						tableaux.get(i)[j] = new Tuiles();
 						tableaux.get(i)[j].setNbre(m.sac.numTuile(m.sac.tuiles.get(c).pos));
-						tableaux.get(i)[j].findColor(tableaux.get(i)[j].nbre);	
+						tableaux.get(i)[j].findColor(tableaux.get(i)[j].nbre);
 					}
+					
 				}
 				e--;
 				m.sac.remove(c);
@@ -168,7 +170,7 @@ public class Fabrique {
 				for(int j=0;j<4;j++) {
 					if(tableaux.get(i)[j].findColor2(s.charAt(2)) == "R" && i == s.charAt(0)) {
 						a = tableaux.get(i)[j];
-						centreDeTable.add(a);
+						centre.addAtCenter(a);
 						tableaux.get(i)[j] = new Tuiles();
 					}
 				}
@@ -182,7 +184,7 @@ public class Fabrique {
 				for(int j=0;j<4;j++) {
 					if(tableaux.get(i)[j].findColor2(s.charAt(2)) == "J" && i == s.charAt(0)) {
 						a = tableaux.get(i)[j];
-						centreDeTable.add(a);
+						centre.c.add(a);
 						tableaux.get(i)[j] = new Tuiles();					}
 				}
 			}
@@ -196,7 +198,7 @@ public class Fabrique {
 				for(int j=0;j<4;j++) {
 					if(tableaux.get(i)[j].findColor2(s.charAt(2)) == "B" && i == s.charAt(0)) {
 						a = tableaux.get(i)[j];
-						centreDeTable.add(a);
+						centre.addAtCenter(a);
 						tableaux.get(i)[j] = new Tuiles();
 					}
 				}
@@ -209,7 +211,7 @@ public class Fabrique {
 				for(int j=0;j<4;j++) {
 					if(tableaux.get(i)[j].findColor2(s.charAt(2)) == "N" && i == s.charAt(0)) {
 						a = tableaux.get(i)[j];
-						centreDeTable.add(a);
+						centre.addAtCenter(a);
 						tableaux.get(i)[j] = new Tuiles();
 					}
 
@@ -223,7 +225,7 @@ public class Fabrique {
 				for(int j=0;j<4;j++) {
 					if(tableaux.get(i)[j].findColor2(s.charAt(3)) == "BL" && i == s.charAt(0)) {
 						a = tableaux.get(i)[j];
-						centreDeTable.add(a);
+						centre.addAtCenter(a);
 						tableaux.get(i)[j] = new Tuiles();
 					}
 				}
@@ -248,11 +250,11 @@ public class Fabrique {
 	}
 	
 	public void centreDeTable() {
-		if(centreDeTable.size() == 0) {
+		if(centre.c.size() == 0) {
 			System.out.println("Le centre de table est vide");
 		} else {
-		for(int i=0;i<centreDeTable.size();i++) {
-			System.out.print(centreDeTable.get(i) + " " );
+		for(int i=0;i<centre.c.size();i++) {
+			System.out.print(centre.c.get(i) + " " );
 			}
 		}
 	}
