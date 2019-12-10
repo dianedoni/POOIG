@@ -13,7 +13,7 @@ public class Jeu {
 		a[3].couleur = "R";
 		
 		c.addAtCenter(a, "R");
-		c.affiche();
+		c.affiche(a,"R");
 		
 		a[0].resetColor("R");*/
 		
