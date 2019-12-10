@@ -1,16 +1,21 @@
-import java.util.LinkedList;
-import java.util.Scanner;
 
-public class Jeu extends Manche {
-	protected LinkedList<Joueur> liste;
-	protected LinkedList<Fabrique> fabriques;
+public class Jeu {
 	
-	/* Il faut tout d abord savoir le nombre de 
-	 * joueurs afin de pouvoir savoir le nombre de fabriques necessaires
-	 * et de lancer le jeu
-	 * */
 	
-	public Jeu(){
+	public static void main(String[] args) {
+		Manche m = new Manche();
+		m.commence();
+		/*CentreDeTable c = 	new CentreDeTable();
+		Tuiles [] a = {new Tuiles(),new Tuiles(),new Tuiles(),new Tuiles()};
+		a[0].couleur = "R";
+		a[1].couleur = "B";
+		a[2].couleur = "J";
+		a[3].couleur = "R";
+		
+		c.addAtCenter(a, "R");
+		c.affiche();
+		
+		a[0].resetColor("R");*/
 		
 	}
 	
