@@ -25,17 +25,20 @@ public class CentreDeTable {
 	}
 	
 	public void affiche(Tuiles[] a,String s) {
-		addAtCenter(a,s);
+	addAtCenter(a,s);
 		if(this.c.size() == 0) {
 			System.out.println("Le centre de table est vide");
 		}else {
-		for(int i=0;i<c.size();i++) {
-			if(a[i].couleur == s) 
-				System.out.print(a[i].couleur + " " );		
+			for(int i =0;i<a.length;i++) {
+				if(a[i].couleur == s) {
+				System.out.print(a[i].couleur + " " );
+				} else {
+					System.out.println("Désespoir");
+				}
 			}
+			} 
 		System.out.println();
 		}
-	}
 	
 }
 
