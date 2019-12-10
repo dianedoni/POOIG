@@ -76,9 +76,9 @@ public class Fabrique {
 		
 	}
 	
-	/*Permet de déterminer le nombre de tuiles
+	/*Permet de dÃ©terminer le nombre de tuiles
 	 * a utiliser au cours d une manche
-	 * pour pouvoir savoir le nombre de tuiles à distribuer dans une manche.
+	 * pour pouvoir savoir le nombre de tuiles Ã  distribuer dans une manche.
 	 */
 	public int nombreDeTuilesAPlacer() {
 		return nbFabrique()*4;
@@ -89,7 +89,7 @@ public class Fabrique {
 	
 	public void remplissage() {
 		int n = nbFabrique(); // trouvons le nombre de fabrique
-		createFabrique(); // Ensuite, on crée des fabriques vides qu'on va remplir
+		createFabrique(); // Ensuite, on crÃ©e des fabriques vides qu'on va remplir
 		int e = 100; 
 		int c = 0;
 		if(m.sac.tuiles.size() == 101) {
@@ -258,5 +258,19 @@ public class Fabrique {
 			}
 		}
 	}
+	
+	/*char c = s.charAt(0);
+		char d = s.charAt(1);
+		String ch = String.valueOf(d);
+		Tuiles a = new Tuiles();
+		for(int i=0;i<4;i++) {
+				if(tableaux.get(c)[i].couleur == ch) {
+					a = tableaux.get(c)[i];
+					centre.c.add(a);
+					tableaux.get(c)[i].setColor(s);	
+				} else {
+					System.out.println(i + " Ce n'est pas le bon choix");
+				}
+			}*/
 	
 }
