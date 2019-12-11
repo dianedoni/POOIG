@@ -260,7 +260,6 @@ public class Fabrique {
 	public void afficheFApresChoix() {
 		nameFirstPlayer = firstPlayer();
 		System.out.println("Le premier joueur sera " + nameFirstPlayer);
-		System.out.println("L'indice de "+ nameFirstPlayer + " est "+ firstIndice);
 		chooseTuile(nameFirstPlayer);
 		for(int i=0;i<tableaux.size();i++) {
 			System.out.print( i + "     ");
@@ -271,7 +270,8 @@ public class Fabrique {
 		}
 		System.out.println();
 		manche.attributionPlateaux();
-		//manche.plateaux.get(firstIndice).choixDeLigne();
+		manche.plateaux.get(firstIndice).choixDeLigne();
+		
 	}
 	
 		public void otherPlayers() {

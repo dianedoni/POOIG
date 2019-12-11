@@ -6,6 +6,7 @@ public class Plateau {
 	protected String [] s = new String[5];
 	protected String[] mos = {"[bl]","[j]","[r]","[n]","[b]"};
 	protected Defausse def;
+	protected int ligne;
 	
 	public Plateau(String s) {
 		this.proprietaire = s;
@@ -20,8 +21,9 @@ public class Plateau {
 	}
 	
 	public void firstLine() {
-		s[4] = "[ ]";                    //
-		System.out.print("1" + "                " + s[4] + "    ");
+		ligne = 1;
+		s[4] = "[ ]";                    
+		System.out.print(ligne + "                " + s[4] + "    ");
 		for(int i=0;i<mos.length;i++) {
 			System.out.print(mos[i] + " ");
 		}
@@ -35,8 +37,9 @@ public class Plateau {
 		mos[3] = "[r]";
 		mos[4] = "[n]";
 		s[3] = "[ ]";
-		s[4] = "[ ]";                //
-		System.out.print("2" + "            " + s[3] + " ");
+		s[4] = "[ ]"; 
+		ligne = 2;
+		System.out.print(ligne + "            " + s[3] + " ");
 		System.out.print(s[4] + "    ");
 		for(int i=0;i<mos.length;i++) {
 			System.out.print(mos[i] + " ");
@@ -52,8 +55,9 @@ public class Plateau {
 		mos[4] = "[r]";
 		s[2] = "[ ]";
 		s[3] = "[ ]";
-		s[4] = "[ ]";            //
-		System.out.print("3" + "        " + s[2] + " ");
+		s[4] = "[ ]";  
+		ligne = 3;
+		System.out.print(ligne + "        " + s[2] + " ");
 		System.out.print(s[3] + " ");
 		System.out.print(s[4] + "    ");
 		for(int i=0;i<mos.length;i++) {
@@ -71,8 +75,9 @@ public class Plateau {
 		s[1] = "[ ]";
 		s[2] = "[ ]";
 		s[3] = "[ ]";
-		s[4] = "[ ]";        //
-		System.out.print("4" + "    " + s[1] + " ");
+		s[4] = "[ ]";  
+		ligne = 4;
+		System.out.print(ligne+ "    " + s[1] + " ");
 		System.out.print(s[2] + " ");
 		System.out.print(s[3] + " ");
 		System.out.print(s[4] + "    ");
@@ -88,7 +93,8 @@ public class Plateau {
 		mos[2] = "[n]";
 		mos[3] = "[b]";
 		mos[4] = "[bl]";
-		System.out.print("5" + "");
+		ligne = 5;
+		System.out.print(ligne + "");
 		for(int i=0;i<s.length-1;i++) {
 			System.out.print("[ ]" + " ");
 		}
@@ -108,10 +114,15 @@ public class Plateau {
 	}
 	
 	public String choixDeLigne() {
-		System.out.println("Sur quelle ligne désirez vous placer vos tuiles?");
+		System.out.println("Sur quelle ligne désirez vous placer vos tuiles ");
+		System.out.println("Entrez un chiffre compris entre 1 et 5");
 		Scanner sc = new Scanner(System.in);
 		String s = "";
 		s = sc.nextLine();
 		return s;
+	}
+	
+	public void placerTuile(int n,String s) {
+		
 	}
 }

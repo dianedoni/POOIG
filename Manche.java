@@ -121,7 +121,8 @@ public class Manche {
 			System.out.println("Les joueurs ont donc leurs plateaux pour la construction");
 			for(int i=0;i<nbJoueurs;i++) {
 				System.out.println(liste.get(i).nom);
-				new Plateau(liste.get(i).nom);
+				Plateau p = new Plateau(liste.get(i).nom);
+				plateaux.add(i,p);
 				System.out.println();
 			}
 		}
