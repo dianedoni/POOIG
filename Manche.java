@@ -8,30 +8,39 @@ public class Manche {
 	protected int nbJoueurs;
 	protected Sac sac;
 	protected int n ;
+	protected LinkedList<Plateau> plateaux;
 	
 	/* pour recuperer le nombre de joueurs et pouvoir 
 	l utiliser sans toutefois avoir besoin du Scanner*/
 	
 	public Manche() {
 		liste = new LinkedList<Joueur>();
-		sac = new Sac();
+		sac = new Sac("rouge",2);
+		plateaux = new LinkedList<Plateau>();
 	}
 	
 	public void commence() {
 		fabrique = new Fabrique();
-		fabrique.m.affichage();
+		fabrique.manche.affichage();
 		fabrique.remplirFabrique();
-		//fabrique.m.addPlayers();
-	
-		System.out.println(fabrique.firstPlayer());
+		
+		System.out.println();
+		//attributionPlateaux();
+		
 		System.out.println();
 		consignes();
+			
+		fabrique.afficheFApresChoix();
+		System.out.println();
 		
-		fabrique.m.liste.get(0).chooseTuile("",0);
+		//System.out.println("Au joueur suivant de jouer.");
 	}
 	
 	
 	public void affichage() {
+		System.out.println("*********************************");
+		System.out.println("               AZUL              ");
+		System.out.println("*********************************");
 		Scanner sc = new Scanner(System.in); 
 	    System.out.println("Combien de joueurs pour cette partie?"); 
 	    nbJoueurs = sc.nextInt();
@@ -58,7 +67,7 @@ public class Manche {
 			Scanner sc = new Scanner(System.in);
 			if(liste.size() == 0) {
 				for(int i=0;i<nbJoueurs;i++) {
-					System.out.println("Le nom du joueur " + i + " est");
+					System.out.println("Le nom du joueur " + i + " est: ");
 					liste.add(i, new Joueur(""));
 					liste.get(i).setNom(sc.nextLine());
 				}
@@ -72,7 +81,7 @@ public class Manche {
 		
 		public void doNotAddPlayers() {
 			if(!nbJoueurCorrect()) {
-				System.out.println("Recommencons");
+				System.out.println("Recommencons, il ne peut y avoir plus de 4 joueurs");
 				affichage();
 			}
 		}
@@ -89,8 +98,11 @@ public class Manche {
 			}
 		}
 		
-		//On choisit aleatoirement le premier joueur au debut de chaque partie
-		
+		// Gere les tours successifs du jeu
+		public void nTour() {
+			
+		}
+
 		
 		public void consignes() {
 			System.out.println("***************Consignes***************");
@@ -104,4 +116,14 @@ public class Manche {
 					+ " aux tuiles {R,J,B,N,BL}");
 			System.out.println();
 		}
+		
+		public void attributionPlateaux() {
+			System.out.println("Les joueurs ont donc leurs plateaux pour la construction");
+			for(int i=0;i<nbJoueurs;i++) {
+				System.out.println(liste.get(i).nom);
+				new Plateau(liste.get(i).nom);
+				System.out.println();
+			}
+		}
+		
 }
