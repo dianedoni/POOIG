@@ -1,55 +1,51 @@
 import java.util.LinkedList;
 import java.util.Random;
+import java.util.Scanner;
 
 public class Fabrique {
-	protected String [] centreDeTable;
 	protected LinkedList<Tuiles[]> tableaux;
-	protected Manche m = new Manche() ;
+	protected Manche manche = new Manche() ;
+	protected CentreDeTable centre;
+	protected String nameFirstPlayer;
+	protected int firstIndice;
+	protected static int tour=1;
 	
 	public Fabrique() {
-		tableaux = new LinkedList<Tuiles[]>();
+		tableaux = new LinkedList<Tuiles[]>(); 
+		centre = new CentreDeTable();
 	}
 	
-	/*En fonction du nombre de joueurs on trouvele
+	/*En fonction du nombre de joueurs on trouve le
 	 * nombre de fabriques necessaires pour jouer
 	 */
 	
 	public int nbFabrique() {
 		int n = 0;
-		if(m.n == 2) {
-			n = n + 5;
-		}
+		if(manche.n == 2) { n = n + 5; }
 		
-		if(m.n == 3) {
-			n = n + 7;
-		}
+		if(manche.n == 3) { n = n + 7; }
 		
-		if(m.n == 4) {
-			n = n + 9;
-		}
+		if(manche.n == 4) { n = n + 9; }
 		
 		return n;
 	}
 	
-	public int nbreJoueurs() {
-		
+	/*
+	 * Calcul en fonction de fabriques, le nombre 
+	 * de joueurs qu'il y a 
+	 */
+	public int nbreJoueurs() {	
 		int n = 0;
-		if(nbFabrique() == 5) {
-			n = n + 2;
-		}
+		if(nbFabrique() == 5) {	n = n + 2;}
 		
-		if(nbFabrique() == 7) {
-			n = n + 3;
-		}
+		if(nbFabrique() == 7) {	n = n + 3;}
 		
-		if(nbFabrique() == 9) {
-			n = n + 4;
-		}
+		if(nbFabrique() == 9) {	n = n + 4;}
 		return n;
 	}
 	
-	/*Les fabriques sont alors representes par des tableaux d entiers
-	 * qui representent les tuiles 2,3,4,5,6 respectivement : rouges
+	/*Les fabriques sont alors representes par des tableaux de tuiles
+	 * qui representent les tuiles R,J,B,N,BL respectivement : rouges
 	 * jaunes, bleues, noires et blanches
 	 * */
 	
@@ -59,61 +55,74 @@ public class Fabrique {
 			for(int i=0;i<5;i++) {
 				tableaux.add(i, new Tuiles[4]);
 			}
-		}
-			
+		}	
 	    if(n == 7) {
 		   for(int i=0;i<7;i++) {
 				tableaux.add(i, new Tuiles[4]);
 			}
 	    }
-	    
 		if(n == 9) {
 			for(int i=0;i<9;i++) {
 				tableaux.add(i, new Tuiles[4]);
 			}
 		}
-		
 	}
 	
 	/*Permet de déterminer le nombre de tuiles
 	 * a utiliser au cours d une manche
-	 * pour pouvoir 
+	 * pour pouvoir savoir le nombre de tuiles à distribuer dans une manche.
 	 */
 	public int nombreDeTuilesAPlacer() {
 		return nbFabrique()*4;
-		
 	}
 	
 	/* Min + (Math.random() * (Max - Min))*/
 	
 	public void remplissage() {
 		int n = nbFabrique(); // trouvons le nombre de fabrique
-		createFabrique(); // Ensuite, on crée des fabriques
-		int e = 100;
+		createFabrique(); // Ensuite, on crée des fabriques vides qu'on va remplir
+		int e = 100; 
 		int c = 0;
-		for(int a=1;a<nombreDeTuilesAPlacer()+1;a++) {	
-			for(int i=0;i<n;i++) {	
-				for(int j=0;j<4;j++) {
-					c = (int) (1+(Math.random() * (e)));
-					m.sac.tuiles.get(a).setPos(c);
-					tableaux.get(i)[j] = new Tuiles();
-					tableaux.get(i)[j].setNbre(m.sac.numTuile(m.sac.tuiles.get(c).pos));
-					tableaux.get(i)[j].findColor(tableaux.get(i)[j].nbre);	
+		int b = 0;
+		String s = "";
+		if(manche.sac.tuiles.size() == 101) {
+			for(int a=1;a<nombreDeTuilesAPlacer()+1;a++) {	
+				for(int i=0;i<n;i++) {	
+					for(int j=0;j<4;j++) {
+						c = (int) (1+(Math.random() * (e)));
+						tableaux.get(i)[j] = new Tuiles(s,b,c);
+						tableaux.get(i)[j].setNbre(manche.sac.numTuile(manche.sac.tuiles.get(c).pos));
+						b = tableaux.get(i)[j].nbre;
+						tableaux.get(i)[j].findColor(tableaux.get(i)[j].nbre);
+						s = tableaux.get(i)[j].couleur;	
+					}
 				}
-			
+				e--;
+				manche.sac.remove(c);
 			}
-		e--;
-		m.sac.remove(c);
+		} else {
+			e = 100 - nombreDeTuilesAPlacer();
+			for(int a=1;a<nombreDeTuilesAPlacer()+1;a++) {	
+				for(int i=0;i<n;i++) {	
+					for(int j=0;j<4;j++) {
+						c = (int) (1+(Math.random() * (e)));
+						manche.sac.tuiles.get(a).setPos(c);
+						tableaux.get(i)[j] = new Tuiles();
+						tableaux.get(i)[j].setNbre(manche.sac.numTuile(manche.sac.tuiles.get(c).pos));
+						tableaux.get(i)[j].findColor(tableaux.get(i)[j].nbre);	
+					}
+				}
+				e--;
+				manche.sac.remove(c);
+			}
 		}
-
 	}
 	
 	
 	public void remplirFabrique() {
-		if(m.nbJoueurCorrect()) {
-		m.addPlayers();
+		if(manche.nbJoueurCorrect()) {
+		manche.addPlayers();
 		System.out.println();
-		//System.out.println("Le jeu va commencer. Manche ....");
 		System.out.println("On dispose des fabriques suivantes");
 		remplissage();
 		for(int i=0;i<nbFabrique();i++) {
@@ -123,10 +132,10 @@ public class Fabrique {
 			}
 			System.out.println();
 			}
-		System.out.println("Il reste " + (m.sac.tuiles.size()-1) + " tuiles dans le sac");
+		System.out.println("Il reste " + (manche.sac.tuiles.size()-1) + " tuiles dans le sac");
 		} else {
-			while(!m.nbJoueurCorrect()) {
-			m.doNotAddPlayers();
+			while(!manche.nbJoueurCorrect()) {
+			manche.doNotAddPlayers();
 			}
 			remplirFabrique();	
 		}
@@ -137,9 +146,132 @@ public class Fabrique {
 	 */
 	public String firstPlayer() {
 		System.out.println();
-		int a = (int)(1+(Math.random() * (m.n-1)));
-		return m.liste.get(a).nom;
+		return nameFirstPlayer = manche.liste.get(firstIndice()).nom;	
+	}
+	
+	public int firstIndice() {
+		 int a = (int)((Math.random() * (manche.n)));
+		 firstIndice = a;
+		 return firstIndice;
+	}
+	
+	public void chooseTuile(String name) {
+		System.out.println("Entrez votre choix " + name + ":");
+		Scanner sc = new Scanner(System.in);
+		String s = "";
+		s = sc.nextLine();
+		
+		if(s.charAt(1) == 'R') {
+			chooseTuileR(s,name);
+		}
+		
+		if(s.charAt(1) == 'J') {
+			chooseTuileJ(s,name);
+		}
+		
+		if(s.charAt(1) == 'B' && s.charAt(2) != 'L' ) {
+			chooseTuileB(s,name);
+		}
+		
+		if(s.charAt(1) == 'N') {
+			chooseTuileN(s,name);
+		}
+		
+		if(s.charAt(1) == 'B' && s.charAt(2) == 'L') {
+			chooseTuileBL(s,name);
+		}
 		
 	}
+	
+	
+	public void search(String s,String name) {
+		int c = Character.getNumericValue( s.charAt(0));
+		String ch = String.valueOf(s.charAt(1));
+		if(nameFirstPlayer.equals(name)) {
+		manche.liste.get(firstIndice).afficheMosaique(tableaux.get(c),ch,nameFirstPlayer);
+		centre.afficheCentreDeTable(tableaux.get(c),ch);
+		this.resetColor(tableaux.get(c),ch);
+		System.out.println();
+		} else {
+			manche.liste.get(firstIndice).afficheMosaique(tableaux.get(c),ch,name);
+			centre.afficheCentreDeTable(tableaux.get(c),ch);
+			this.resetColor(tableaux.get(c),ch);
+			System.out.println();
+		}
+	}
+	
+	
+	
+	public void resetColor(Tuiles[] a,String s) {
+		for(int i=0;i<a.length;i++) {
+			if(a[i].couleur.equals(s)) {
+				a[i].setColor("V");
+			}else {
+				a[i].setColor("V");
+			}
+		}
+	}
+	
+	public void chooseTuileR(String s,String name) {
+		System.out.println("Vous avez choisi la fabrique " + s.charAt(0) + " et la/les tuile(s) R");
+		System.out.println();
+			search(s,name);
+	}
+	
+	public void chooseTuileJ(String s,String name) {	
+		System.out.println("Vous avez choisi la fabrique " + s.charAt(0) + " et la/les tuile(s) J");
+		System.out.println();
+		search(s,name);
+	}
+	
+	public void chooseTuileB(String s, String name) {
+		System.out.println("Vous avez choisi la fabrique " + s.charAt(0) + " et la/les tuile(s) B");
+		System.out.println();
+		search(s,name);
+	}
+	
+	public void chooseTuileN(String s, String name) {
+		System.out.println("Vous avez choisi la fabrique " + s.charAt(0) + " et la/les tuile(s) N");
+		System.out.println();
+		search(s,name);
+		
+	}
+	
+	public void chooseTuileBL(String s,String name) {
+		System.out.println("Vous avez choisi la fabrique " + s.charAt(0) + " et la/les tuile(s) BL");
+		System.out.println();
+		if(name.equals(nameFirstPlayer)) {
+		int c = Character.getNumericValue( s.charAt(0));
+		String ch = String.valueOf(s.charAt(1));
+		String h = ch + String.valueOf(s.charAt(2));
+		manche.liste.get(firstIndice).afficheMosaique(tableaux.get(c),h,nameFirstPlayer);
+		centre.afficheCentreDeTable(tableaux.get(c),h);
+		this.resetColor(tableaux.get(c),h);
+		System.out.println();
+		}else {
+			search(s,name);
+		}
+	}
+		
+	public void afficheApresChoixFirst() {
+		nameFirstPlayer = firstPlayer();
+		System.out.println("Le premier joueur sera " +  nameFirstPlayer);
+		chooseTuile(nameFirstPlayer);
+		System.out.println("Manche " + tour);
+		for(int i=0;i<tableaux.size();i++) {
+			System.out.print( i + "     ");
+			for(int j=0;j<tableaux.get(i).length;j++) {
+				System.out.print(tableaux.get(i)[j].couleur + " ");
+			}
+			System.out.println();
+		}
+		System.out.println();
+		manche.attributionPlateaux();
+		System.out.print(nameFirstPlayer + " ");
+		manche.plateaux.get(firstIndice).placerTuile(manche.plateaux.get(firstIndice).ligneChoisie,
+		manche.liste.get(firstIndice).tuileChoisie,manche.liste.get(firstIndice).nbreTuilesChoisies);
+	}
+	
+	
 	
 }

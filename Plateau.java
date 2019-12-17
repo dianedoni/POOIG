@@ -1,3 +1,4 @@
+import java.util.Scanner;
 
 public class Plateau {
 	protected Manche m = new Manche();
@@ -5,6 +6,8 @@ public class Plateau {
 	protected String [] s = new String[5];
 	protected String[] mos = {"[bl]","[j]","[r]","[n]","[b]"};
 	protected Defausse def;
+	protected int [] lignes = {1,2,3,4,5};
+	protected int ligneChoisie;
 	
 	public Plateau(String s) {
 		this.proprietaire = s;
@@ -19,8 +22,8 @@ public class Plateau {
 	}
 	
 	public void firstLine() {
-		s[4] = "[ ]";                    //
-		System.out.print("1" + "                " + s[4] + "    ");
+		s[4] = "[ ]";                    
+		System.out.print(lignes[0] + "                " + s[4] + "    ");
 		for(int i=0;i<mos.length;i++) {
 			System.out.print(mos[i] + " ");
 		}
@@ -34,8 +37,8 @@ public class Plateau {
 		mos[3] = "[r]";
 		mos[4] = "[n]";
 		s[3] = "[ ]";
-		s[4] = "[ ]";                //
-		System.out.print("2" + "            " + s[3] + " ");
+		s[4] = "[ ]"; 
+		System.out.print(lignes[1] + "            " + s[3] + " ");
 		System.out.print(s[4] + "    ");
 		for(int i=0;i<mos.length;i++) {
 			System.out.print(mos[i] + " ");
@@ -51,8 +54,8 @@ public class Plateau {
 		mos[4] = "[r]";
 		s[2] = "[ ]";
 		s[3] = "[ ]";
-		s[4] = "[ ]";            //
-		System.out.print("3" + "        " + s[2] + " ");
+		s[4] = "[ ]";  
+		System.out.print(lignes[2] + "        " + s[2] + " ");
 		System.out.print(s[3] + " ");
 		System.out.print(s[4] + "    ");
 		for(int i=0;i<mos.length;i++) {
@@ -70,8 +73,8 @@ public class Plateau {
 		s[1] = "[ ]";
 		s[2] = "[ ]";
 		s[3] = "[ ]";
-		s[4] = "[ ]";        //
-		System.out.print("4" + "    " + s[1] + " ");
+		s[4] = "[ ]";  
+		System.out.print(lignes[3] + "    " + s[1] + " ");
 		System.out.print(s[2] + " ");
 		System.out.print(s[3] + " ");
 		System.out.print(s[4] + "    ");
@@ -87,7 +90,7 @@ public class Plateau {
 		mos[2] = "[n]";
 		mos[3] = "[b]";
 		mos[4] = "[bl]";
-		System.out.print("5" + "");
+		System.out.print(lignes[4] + "");
 		for(int i=0;i<s.length-1;i++) {
 			System.out.print("[ ]" + " ");
 		}
@@ -104,5 +107,53 @@ public class Plateau {
 		thrdLine();
 		frthLine();
 		fifthLine();
+	}
+	
+	public int choixDeLigne() {
+		System.out.println("sur quelle ligne désirez vous placer vos tuiles ");
+		System.out.println("Entrez un chiffre compris entre 1 et 5");
+		Scanner sc = new Scanner(System.in);
+		ligneChoisie = sc.nextInt();
+		return ligneChoisie;
+	}
+	
+	public void placerTuile(int ligne,String ch,int nbreTuilesAPlacer){
+		choixDeLigne();
+		nbreTuilesAPlacer = 4 -nbreTuilesAPlacer;
+		System.out.println("le nombre de tuiles a placer est: " + nbreTuilesAPlacer);
+		ligne = ligneChoisie;
+		int n = this.s.length;
+		int diff = 0;
+		for(int i=0;i<lignes.length;i++) {
+			if(lignes[i] == ligne) {
+				for(int j=n-ligne;j<n;j++) { 
+					if(nbreTuilesAPlacer>ligne) {
+						diff =nbreTuilesAPlacer-ligne;
+						System.out.println("La/Les " + "seul/" + diff + " tuile(s) sera(ont) rajouté(s)  à la défausse");
+					} else {
+					for(int c=0;c<nbreTuilesAPlacer;c++) {
+						s[j] = "[" + ch + "]";
+					}
+				}
+			}
+		} else {
+				
+			}
+		}
+		affiche(this.s,ligne,ch,nbreTuilesAPlacer);
+		System.out.println();
+	}
+	
+	
+	public void affiche(String[]s,int ligne, String ch,int nbreTuilesAPlacer) {
+		System.out.print(ligne + " ");
+		for(int i=0;i<s.length-ligne;i++) {
+			s[i] = "   ";
+			System.out.print(s[i] + " ");
+		}
+		for(int i=s.length-ligne;i<s.length;i++) {
+			s[i] = "[" + ch + "]";
+			System.out.print(s[i] + " ");
+		}
 	}
 }
