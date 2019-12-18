@@ -1,16 +1,17 @@
 import java.util.LinkedList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 
 public class Manche {
 	protected LinkedList<Joueur> liste;
 	protected Fabrique fabrique;
-	protected TwoPlayers two;
-	protected ThreePlayers three;
-	protected FourPlayers four;
-	protected int nbJoueurs;
-	protected Sac sac;
-	protected int n ;
+	protected static TwoPlayers two;
+	protected static ThreePlayers three;
+	protected static FourPlayers four;
+	protected static int nbJoueurs;
+	protected static Sac sac;
+	protected static int n ;
 	protected LinkedList<Plateau> plateaux;
 	
 	/* pour recuperer le nombre de joueurs et pouvoir 
@@ -23,39 +24,42 @@ public class Manche {
 	}
 	
 	public void commence() {
-		gameWithNumberOfPlayers();
 		
+		gameWithNumberOfPlayers();
 	}
 	
 	public void gameWithNumberOfPlayers(){
-		affichageAzul();
-		two = new TwoPlayers();
-		three = new ThreePlayers();
-		if(n==2) {
+		if(nbJoueurs == 2) {
+			two = new TwoPlayers();
 			two.gameWithTwoPlayers();
-		} else if(n==3) {
+			//two.afficheNextPlayer();
+			System.out.println();
+		} else if(nbJoueurs == 3){
+			three = new ThreePlayers();
 			three.gameWithThreePlayers();
+			System.out.println();
 		} else {
-			
+			four = new FourPlayers();
+			four.gameWithFourPlayers();
+			System.out.println();
 		}
 	}
 	
-	public void affichageAzul() {
+	public void affichage() {
 		System.out.println("*********************************");
 		System.out.println("               AZUL              ");
 		System.out.println("*********************************");
 		Scanner sc = new Scanner(System.in); 
 	    System.out.println("Combien de joueurs pour cette partie?"); 
-	    nbJoueurs = sc.nextInt();
+	    try{nbJoueurs = sc.nextInt();}
+	    catch(InputMismatchException i) {
+	    	System.out.println("Vous devez entrer un nombre et non des caractères");
+	    }
 	    System.out.println("Il y a " + nbJoueurs + " joueurs");
 		n = nbJoueurs;
 		
 	}
 	
-	public Fabrique bonneFabrique() {
-		Fabrique f = new Fabrique();
-		return f;
-	}
 	
 	
 		// Methode de verification afin de respecter les regles du jeu
@@ -88,9 +92,10 @@ public class Manche {
 		
 		public void doNotAddPlayers() {
 			if(!nbJoueurCorrect()) {
-				System.out.println("Recommencons, il ne peut y avoir moins de 2 joueurs et plus de 4 joueurs");
-				affichageAzul();
+				System.out.println("Recommencons, il ne peut y avoir moins de 2 et  plus de 4 joueurs");
+				affichage();
 			}
+			
 		}
 		
 		/*Enfin on a tous les elements necessaires
@@ -106,8 +111,19 @@ public class Manche {
 		}
 		
 		// Gere les tours successifs du jeu
-		public void nTour() {
-			
+		public int bonneFabrique() {
+			int n = 0;
+			Fabrique f = new Fabrique();
+			if(nbJoueurs == 2) {
+				f = two;
+				n = n + 5;
+			} else if(nbJoueurs == 3) {
+				f = three;
+				n = n + 7;
+			} else {
+				n = n + 9;
+			}
+			return n;
 		}
 
 		
@@ -115,7 +131,7 @@ public class Manche {
 			System.out.println("***************Consignes***************");
 			System.out.println("Pour prendre les tuiles que vous desirez, choisissez d abord ");
 			System.out.println("la fabrique concernee en indiquant un numero entre 0 et "
-					+ (two.nbFabrique()-1) + ".");
+				+ (bonneFabrique()-1) + ".");
 			System.out.println("Ensuite choississez les tuiles qui vous interessent dans cette fabrique.");
 			System.out.println("Pour cela vous avez le choix entre les caracteres {R,J,B,N,BL} avec BL "
 					+ "representant le blanc.");

@@ -45,11 +45,26 @@ public class Tuiles extends Objet {
 		}
 		
 		/*switch(n){
-		case '2':this.couleur = "R";break;
-		case '3':this.couleur = "J";break;
-		case '4':this.couleur = "B";break;
-		case '5':this.couleur = "N";break;
-		case '6':this.couleur = "BL";break;
+		case '2':
+			if(n == 2)
+		 		this.couleur = "R";
+		 break;
+		case '3':
+			if(n == 3)
+				this.couleur = "J";
+		 break;
+		case '4':
+			if(n == 4)
+				this.couleur = "B";
+		 break;
+		case '5':
+			if(n == 5)
+				this.couleur = "N";
+		 break;
+		case '6':
+			if(n == 6)
+				this.couleur = "BL";
+		 break;
 		default:System.out.print(n);
 		}*/
 

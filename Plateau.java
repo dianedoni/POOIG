@@ -1,6 +1,7 @@
 import java.util.Scanner;
+import java.util.InputMismatchException;
 
-public class Plateau {
+public class Plateau extends InputMismatchException {
 	protected Manche m = new Manche();
 	protected String proprietaire;
 	protected String [] s = new String[5];
@@ -113,7 +114,12 @@ public class Plateau {
 		System.out.println("sur quelle ligne désirez vous placer vos tuiles ");
 		System.out.println("Entrez un chiffre compris entre 1 et 5");
 		Scanner sc = new Scanner(System.in);
-		ligneChoisie = sc.nextInt();
+		try { this.ligneChoisie = sc.nextInt(); }
+		catch (InputMismatchException i) {
+			System.out.println("Vous deviez entrer un entier.");
+			System.out.println("Recommencez!");
+			choixDeLigne();
+			}
 		return ligneChoisie;
 	}
 	

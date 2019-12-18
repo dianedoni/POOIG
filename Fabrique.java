@@ -160,7 +160,6 @@ public class Fabrique {
 		Scanner sc = new Scanner(System.in);
 		String s = "";
 		s = sc.nextLine();
-		
 		if(s.charAt(1) == 'R') {
 			chooseTuileR(s,name);
 		}
@@ -185,7 +184,7 @@ public class Fabrique {
 	
 	
 	public void search(String s,String name) {
-		int c = Character.getNumericValue( s.charAt(0));
+		int c = Character.getNumericValue(s.charAt(0));
 		String ch = String.valueOf(s.charAt(1));
 		if(nameFirstPlayer.equals(name)) {
 		manche.liste.get(firstIndice).afficheMosaique(tableaux.get(c),ch,nameFirstPlayer);
@@ -273,5 +272,48 @@ public class Fabrique {
 	}
 	
 	
+	public void afficheApresChoix(String name,int indice) {
+		chooseTuile(name);
+		System.out.println("Manche " + tour);
+		for(int i=0;i<tableaux.size();i++) {
+			System.out.print( i + "     ");
+			for(int j=0;j<tableaux.get(i).length;j++) {
+				System.out.print(tableaux.get(i)[j].couleur + " ");
+			}
+			System.out.println();
+		}
+		System.out.println();
+		System.out.print(name + " ");
+		manche.plateaux.get(indice).placerTuile(manche.plateaux.get(indice).ligneChoisie,
+		manche.liste.get(indice).tuileChoisie,manche.liste.get(indice).nbreTuilesChoisies);
+		tour++;
+	}
+	
+	public void afficheApresNChoix() {
+		int n = 1;
+		int c = nbFabrique();
+		String s = nextPlayer();
+		while(n<=c) {
+			afficheApresChoix(s,firstIndice);
+			n++;
+			s=nextPlayer();
+		}
+	}
+	
+	public String nextPlayer() {
+		String s = "";
+		int n = nbreJoueurs();
+		int indice = firstIndice;
+		if(n == 2 && indice !=1) { 
+			System.out.println("Le prochain joueur sera " + manche.liste.get(1).nom);
+			s = manche.liste.get(1).nom;
+			firstIndice = 1;
+		}else {
+			System.out.println("Le prochain joueur sera " + manche.liste.get(0).nom); 
+			s = manche.liste.get(0).nom;
+			firstIndice = 0;
+		}
+		return s;
+	}			
 	
 }

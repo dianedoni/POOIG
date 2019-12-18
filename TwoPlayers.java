@@ -1,6 +1,6 @@
 
 public class TwoPlayers extends Fabrique {
-	
+	protected Manche manche = new Manche() ;
 	
 	public TwoPlayers() {
 		super();
@@ -18,6 +18,21 @@ public class TwoPlayers extends Fabrique {
 		super.createFabrique();
 	}
 	
+	public int nombreDeTuilesAPlacer() {
+		return nbFabrique()*4;
+	}
+	
+	/* Min + (Math.random() * (Max - Min))*/
+	
+	public void remplissage() {
+		super.remplissage();
+	}
+	
+	
+	public void remplirFabrique() {
+		super.remplirFabrique();
+	}
+	
 	
 	
 	public void afficheApresNChoix() {
@@ -33,46 +48,45 @@ public class TwoPlayers extends Fabrique {
 	
 	
 	public String nextPlayer() {
+		System.out.println(manche.liste.size());
 		String s = "";
 		int n = nbreJoueurs();
 		int indice = firstIndice;
-		if(n == 2 && indice !=1) { 
+		if(n == 2 && indice ==1) { 
+			System.out.println("Le prochain joueur sera " + manche.liste.get(0).nom);
+			s = manche.liste.get(0).nom;
+			firstIndice = 0;
+		}else {
+			//try{
 			System.out.println("Le prochain joueur sera " + manche.liste.get(1).nom);
 			s = manche.liste.get(1).nom;
 			firstIndice = 1;
-		}else {
-			System.out.println("Le prochain joueur sera " + manche.liste.get(0).nom); 
-			s = manche.liste.get(0).nom;
-			firstIndice = 0;
+			//}
+			//catch(IndexOutOfBoundsException i) {
+			System.out.println("Instance non définie");
+			//}
 		}
+		System.out.println("Terminé");
 		return s;
 	}			
 	
-	public void afficheApresChoix(String name,int indice) {
-		chooseTuile(name);
-		System.out.println("Manche " + tour);
-		for(int i=0;i<tableaux.size();i++) {
-			System.out.print( i + "     ");
-			for(int j=0;j<tableaux.get(i).length;j++) {
-				System.out.print(tableaux.get(i)[j].couleur + " ");
-			}
-			System.out.println();
-		}
-		System.out.println();
-		System.out.print(name + " ");
-		manche.plateaux.get(indice).placerTuile(manche.plateaux.get(indice).ligneChoisie,
-		manche.liste.get(indice).tuileChoisie,manche.liste.get(indice).nbreTuilesChoisies);
-		tour++;
+	public void afficheNextPlayer() {
+		System.out.println(nextPlayer());
 	}
 	
 	public void gameWithTwoPlayers() {
 		remplirFabrique();
 		System.out.println();
 		System.out.println();
+		afficheNextPlayer();
 		manche.consignes();
 		afficheApresChoixFirst();
-		afficheApresNChoix();
-		System.out.println();
+		//afficheApresNChoix();
+		/*try{System.out.println(nextPlayer());}
+		catch(Exception e) {
+			System.out.println("La fonction nextPlayer() ne marche pas");
+		}*/
+		System.out.println(manche.liste.size());
 	}
 
 }
