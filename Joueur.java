@@ -6,6 +6,8 @@ public class Joueur {
 	protected LinkedList<Tuiles> mosaique;
 	protected int score;
 	protected Manche m = new Manche();
+	protected int nbreTuilesChoisies = 0;
+	protected String tuileChoisie = " ";
 
 	
 	public Joueur(String n) {
@@ -17,38 +19,41 @@ public class Joueur {
 	public void setNom(String n) {
 		this.nom =  n;
 	}
-
-	public void chooseTuile(String c,int n) {
-		System.out.println("Entrez votre choix");
-		Scanner sc = new Scanner(System.in);
-		String s = "";
-		s = sc.nextLine();
-		if(s.charAt(1) == 'R') {
-			System.out.println("Vous avez choisi la fabrique " + s.charAt(0) + " et la tuile R");
-		}
-		if(s.charAt(1) == 'J') {
-			System.out.println("Vous avez choisi la fabrique " + s.charAt(0) + " et la tuile J");
-		}
-		
-		if(s.charAt(1) == 'B' && s.charAt(2) != 'L' ) {
-			System.out.println("Vous avez choisi la fabrique " + s.charAt(0) + " et la tuile B");
-		}
-		
-		if(s.charAt(1) == 'N') {
-			System.out.println("Vous avez choisi la fabrique " + s.charAt(0) + " et la tuile N");
-		}
-		
-		if(s.charAt(1) == 'B' && s.charAt(2) == 'L') {
-			System.out.println("Vous avez choisi la fabrique " + s.charAt(0) + " et la tuile BL");
-		}
-		
-		if(mosaique.size() == 0) {
-			mosaique.add(0, new Tuiles(c,n));
-		} else {
-			mosaique.addLast(new Tuiles(c,n));
+	
+	
+	public void addMosaique(Tuiles[] a ,String s) {
+		for(int i=0;i<a.length;i++) {
+			if(a[i].couleur.equals(s) && this.mosaique.size() ==0) {
+				this.mosaique.add(0,a[i]);
+				tuileChoisie = a[i].couleur;
+			} else if(a[i].couleur.equals(s) && this.mosaique.size() !=0) {
+				this.mosaique.addLast(a[i]);
+			} else {
+				nbreTuilesChoisies++;
+			}
 		}
 		
 	}
 	
+	public boolean searchRightMosaique( String nom) {
+		return this.nom.equals(nom);
+	}
+	
+	public void afficheMosaique(Tuiles[] a,String s,String nom) {
+		addMosaique(a,s);
+		if(this.mosaique.size() == 0) {
+			System.out.println("La mosaique de " + this.nom + " est vide");
+		}else {
+			System.out.print("La mosaique de "+ this.nom+ " est composé des tuiles suivantes : ");
+			for(int i =0;i<a.length;i++) {
+				if(a[i].couleur.equals(s) && this.nom.equals(nom)) {
+				System.out.print( a[i].couleur + " " );
+				} else {
+					
+				}
+			}
+			} 
+		System.out.println();
+		}
 	
 }
