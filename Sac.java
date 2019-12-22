@@ -94,6 +94,13 @@ public class Sac extends Tuiles{
 		}	
 	}
 	
+	/*Dans ce code, les tuiles sont rangées dans un ordre précis
+	 * dans le sens ou les tuiles rouges sont varient de la position 1 à
+	 * la position 21 etc.... Donc determiner la position d'une tuile 
+	 * permet donc de savoir de quelle couleur est la tuile. Cette fonctionne se montrera utile 
+	 * dans la classe Fabrique au moment de remplir les fabriques.
+	 * */
+	
 	public int numTuile(int a) {
 		int n = 0;
 			if(a>=1 && a<=21){
@@ -112,16 +119,16 @@ public class Sac extends Tuiles{
 				n = n + 5;
 			}
 			
-			if(a>=81 && a<=102){
+			if(a>=81 && a<=101){
 				n = n + 6;
 			}
 		return n;
 	}
 	
-	public void affiche(int i) { 		
-		System.out.println(tuiles.get(i).couleur + " " + tuiles.get(i).nbre );
-	}
 	
+	/*
+	 * Remplis progressivement le sac de tuiles de differentes couleures
+	 */
 	public void remplissageSac() {
 		
 			tuilesRouges("rouge",2);
@@ -131,12 +138,13 @@ public class Sac extends Tuiles{
 			tuilesBlanches("blanche",6);
 	}
 	
+	/*
+	 * Supprime un element donné de la liste de tuiles
+	 * Utile pour eviter d'abuser des attributs dans le code
+	 */
 	public void remove(int i) {
 		tuiles.remove(i);
 	}
 	
-	// Gere les tours successifs du jeu
-	public void nTour() {
-		
-	}
+	
 }

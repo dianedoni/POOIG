@@ -1,145 +1,83 @@
-import java.util.LinkedList;
-import java.util.Random;
-
-public class Fabrique {
-	protected String [] centreDeTable;
-	protected LinkedList<Tuiles[]> tableaux;
-	protected Manche m = new Manche() ;
+public interface Fabrique {
 	
-	public Fabrique() {
-		tableaux = new LinkedList<Tuiles[]>();
-	}
-	
-	/*En fonction du nombre de joueurs on trouvele
+	/*En fonction du nombre de joueurs on trouve le
 	 * nombre de fabriques necessaires pour jouer
 	 */
 	
-	public int nbFabrique() {
-		int n = 0;
-		if(m.n == 2) {
-			n = n + 5;
-		}
+	 int nbFabrique();
 		
-		if(m.n == 3) {
-			n = n + 7;
-		}
-		
-		if(m.n == 4) {
-			n = n + 9;
-		}
-		
-		return n;
-	}
 	
-	public int nbreJoueurs() {
-		
-		int n = 0;
-		if(nbFabrique() == 5) {
-			n = n + 2;
-		}
-		
-		if(nbFabrique() == 7) {
-			n = n + 3;
-		}
-		
-		if(nbFabrique() == 9) {
-			n = n + 4;
-		}
-		return n;
-	}
+	/*
+	 * Calcul en fonction de fabriques, le nombre 
+	 * de joueurs qu'il y a 
+	 */
+	 int nbreJoueurs();	
+
 	
-	/*Les fabriques sont alors representes par des tableaux d entiers
-	 * qui representent les tuiles 2,3,4,5,6 respectivement : rouges
+	/*Les fabriques sont alors representes par des tableaux de tuiles
+	 * qui representent les tuiles R,J,B,N,BL respectivement : rouges
 	 * jaunes, bleues, noires et blanches
 	 * */
 	
-	public void createFabrique() {
-		int n = nbFabrique();
-		if(n == 5) {
-			for(int i=0;i<5;i++) {
-				tableaux.add(i, new Tuiles[4]);
-			}
-		}
-			
-	    if(n == 7) {
-		   for(int i=0;i<7;i++) {
-				tableaux.add(i, new Tuiles[4]);
-			}
-	    }
-	    
-		if(n == 9) {
-			for(int i=0;i<9;i++) {
-				tableaux.add(i, new Tuiles[4]);
-			}
-		}
-		
-	}
+	 void createFabrique();
 	
 	/*Permet de déterminer le nombre de tuiles
 	 * a utiliser au cours d une manche
-	 * pour pouvoir 
+	 * pour pouvoir savoir le nombre de tuiles à distribuer dans une manche.
 	 */
-	public int nombreDeTuilesAPlacer() {
-		return nbFabrique()*4;
-		
-	}
+	 int nombreDeTuilesAPlacer();
 	
-	/* Min + (Math.random() * (Max - Min))*/
-	
-	public void remplissage() {
-		int n = nbFabrique(); // trouvons le nombre de fabrique
-		createFabrique(); // Ensuite, on crée des fabriques
-		int e = 100;
-		int c = 0;
-		for(int a=1;a<nombreDeTuilesAPlacer()+1;a++) {	
-			for(int i=0;i<n;i++) {	
-				for(int j=0;j<4;j++) {
-					c = (int) (1+(Math.random() * (e)));
-					m.sac.tuiles.get(a).setPos(c);
-					tableaux.get(i)[j] = new Tuiles();
-					tableaux.get(i)[j].setNbre(m.sac.numTuile(m.sac.tuiles.get(c).pos));
-					tableaux.get(i)[j].findColor(tableaux.get(i)[j].nbre);	
-				}
-			
-			}
-		e--;
-		m.sac.remove(c);
-		}
-
-	}
+	 /*
+	  * On remplit au préalable la liste de tableaux de tuiles de 
+	  * tuiles vides afin de ne pas avoir d'erreurs à la compilation par rapport 
+	  * à l'instanciation
+	  */
+	 void remplissage();
 	
 	
-	public void remplirFabrique() {
-		if(m.nbJoueurCorrect()) {
-		m.addPlayers();
-		System.out.println();
-		//System.out.println("Le jeu va commencer. Manche ....");
-		System.out.println("On dispose des fabriques suivantes");
-		remplissage();
-		for(int i=0;i<nbFabrique();i++) {
-			System.out.print( i + "     ");
-			for(int j=0;j<4;j++) {
-				System.out.print(tableaux.get(i)[j].couleur + " ");
-			}
-			System.out.println();
-			}
-		System.out.println("Il reste " + (m.sac.tuiles.size()-1) + " tuiles dans le sac");
-		} else {
-			while(!m.nbJoueurCorrect()) {
-			m.doNotAddPlayers();
-			}
-			remplirFabrique();	
-		}
-	}
+	public void addPlayers();
 	
 	/*Apres avoir trouve le nombre de fabriques necessaires, on choisit aleatoirement 
-	 * le nom du premier joueur
+	 * le nom du premier joueur en se servant de firstIndice()
 	 */
-	public String firstPlayer() {
-		System.out.println();
-		int a = (int)(1+(Math.random() * (m.n-1)));
-		return m.liste.get(a).nom;
-		
-	}
+	public String firstPlayer();
 	
+	
+	/*
+	 * Indique aleatoirement un indice dans la liste 
+	 * qui sera celui du premier joueur
+	 */
+	public int firstIndice();
+	
+	/*
+	 * Comme son nom l'indique, cette fonction est celle qui permet à un 
+	 * quelconque joueur de choisir la tuile qu'il veut
+	 */
+	public void chooseTuile(String name);
+	
+	/*
+	 * 
+	 */
+	public void search(String s,String name);
+	
+	
+	
+	public void resetColor(Tuiles[] a,String s);
+	
+	public void chooseTuileR(String s,String name);
+	
+	public void chooseTuileJ(String s,String name);
+	
+	public void chooseTuileB(String s, String name);
+	
+	public void chooseTuileN(String s, String name);
+	
+	public void chooseTuileBL(String s,String name);
+		
+	public void afficheApresChoixFirst();
+	
+	
+	public void afficheApresChoix(String name,int indice);
+	
+		
 }

@@ -1,12 +1,15 @@
 import java.util.LinkedList;
-import java.util.Random;
 
 public class Tuiles extends Objet {
 	protected LinkedList<Objet> objets;
+	protected static int num=-1;
+	protected int id;
+	{num++;}
 	
 	public Tuiles(String c, int n,int pos){
 		super(c,n,pos);
 		this.objets = new LinkedList<Objet>();
+		this.id = num;
 	}
 	
 	
@@ -25,8 +28,7 @@ public class Tuiles extends Objet {
 		}
 		
 		if(n == 3) {
-			this.couleur = "J";
-			
+			this.couleur = "J";	
 		}
 		
 		if(n == 4) {
@@ -40,6 +42,31 @@ public class Tuiles extends Objet {
 		if(n == 6) {
 			this.couleur = "BL";
 		}
+		
+		/*switch(n){
+		case '2':
+			if(n == 2)
+		 		this.couleur = "R";
+		 break;
+		case '3':
+			if(n == 3)
+				this.couleur = "J";
+		 break;
+		case '4':
+			if(n == 4)
+				this.couleur = "B";
+		 break;
+		case '5':
+			if(n == 5)
+				this.couleur = "N";
+		 break;
+		case '6':
+			if(n == 6)
+				this.couleur = "BL";
+		 break;
+		default:System.out.print(n);
+		}*/
+
 	}
 	
 	
@@ -52,8 +79,30 @@ public class Tuiles extends Objet {
 		}
 	}
 	
-	public void removeTuile(char c,int n) {
+	public String findColor2(int n) {
+		String s = "";
+		if(n == 2) {
+			s = "R";
+		}
 		
+		if(n == 3) {
+			s = "J";
+		}
+		
+		if(n == 4) {
+			s = "B";
+		}
+		
+		if(n == 5) {
+			s = "N";
+		}
+		
+		if(n == 6) {
+			s = "BL";
+		}
+		return s;
 	}
+	
+	
 	
 }
