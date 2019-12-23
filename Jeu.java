@@ -1,8 +1,16 @@
-
+import javax.swing.*;
+import java.util.*;
 public class Jeu {
+	protected static Vue vue;
+	protected static JeuVue jeu;
+	protected static JFrame fenetre;
 	
 	
-	public static void main(String[] args) {
+	public static void choix(){
+	System.out.println("Souhaitez-vous jouer en textuel ou en interface graphique ?\n1 - textuel \n 2 - interface graphique");
+		Scanner sc = new Scanner(System.in);
+		int tmp = sc.nextInt();
+		if(tmp == 1){
 		Manche m = new Manche();
 		m.commence();
 		/*CentreDeTable c = 	new CentreDeTable();
@@ -22,6 +30,21 @@ public class Jeu {
 		CentreDeTable.afficheCentreDeTable(b,"N");
 		System.out.println("La taille de centre de table est :" + CentreDeTable.c.size());
 		*/
+		}else if(tmp == 2){
+		this.fenetre = new Frame("Azul");
+		this.fenetre.setDefaultCloseOperation(Jframe.EXIT_ON_CLOSE);
+		this.fenetre.setSize(800,800);
+		this.fenetre.setResizable(true);
+		this.fenetre.setLocationRelativeTo(null);
+		}else{
+		System.out.println("Veuillez saisir une donnee coherente");
+		choix();
+		}
+	}
+	
+	
+	public static void main(String[] args) {
+		choix();
 		
 	}
 	

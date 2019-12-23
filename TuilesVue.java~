@@ -1,0 +1,11 @@
+public class TuilesVue{
+    protected String couleur;
+    protected Image imgt;
+    protected ImageIcon icot;
+
+    public TuilesVue(String c){
+	if(c.equals("blanc")){
+	    
+	}
+    }
+}
