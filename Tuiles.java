@@ -103,6 +103,26 @@ public class Tuiles extends Objet {
 		return s;
 	}
 	
-	
+	public void findFirstColor() {
+		if(this.couleur.equals("V") && this.nbre == 2){
+			setColor("R");
+		}
+		
+		if(this.couleur.equals("V") && this.nbre == 3){
+			setColor("J");
+		}
+		
+		if(this.couleur.equals("V") && this.nbre == 4){
+			setColor("B");
+		}
+		
+		if(this.couleur.equals("V") && this.nbre == 5){
+			setColor("N");
+		}
+		
+		if(this.couleur.equals("V") && this.nbre == 6){
+			setColor("BL");
+		}
+	}
 	
 }

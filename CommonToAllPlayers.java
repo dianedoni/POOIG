@@ -2,13 +2,13 @@ import java.util.LinkedList;
 import java.util.Scanner;
 
 public class CommonToAllPlayers implements Fabrique{
-	
 	protected LinkedList<Tuiles[]> tableaux;
 	protected static Manche manche = new Manche() ;
 	protected static CentreDeTable centre;
 	protected String nameFirstPlayer;
 	protected int firstIndice;
 	protected static int tour=1;
+	
 	
 	public CommonToAllPlayers() {
 		tableaux = new LinkedList<Tuiles[]>(); 
@@ -173,11 +173,7 @@ public class CommonToAllPlayers implements Fabrique{
 	
 	public void resetColor(Tuiles[] a,String s) {
 		for(int i=0;i<a.length;i++) {
-			if(a[i].couleur.equals(s)) {
-				a[i].setColor("V");
-			}else {
-				a[i].setColor("V");
-			}
+			a[i].setColor("V");
 		}
 	}
 	

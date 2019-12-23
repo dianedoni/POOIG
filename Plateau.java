@@ -130,7 +130,7 @@ public class Plateau {
 		int n = this.s.length;
 		int diff = 0;
 		for(int i=0;i<lignes.length;i++) {
-			try{if(lignes[i] == ligne) {
+			if(lignes[i] == ligne) {
 				for(int j=n-ligne;j<n;j++) { 
 					if(nbreTuilesAPlacer>ligne) {
 						diff =nbreTuilesAPlacer-ligne;
@@ -140,11 +140,9 @@ public class Plateau {
 						s[j] = "[" + ch + "]";
 					}
 				}
-			}		
 			}
-		}
-			catch(Exception e) {
-				System.out.println("Choisissez un nombre entre 1 et 5");
+		} else {
+				
 			}
 		}
 		affiche(ligne,ch,nbreTuilesAPlacer);

@@ -66,6 +66,12 @@ public class FourPlayers extends CommonToAllPlayers{
 		System.out.println();
 		manche.consignes();
 		afficheApresChoixFirst();
+		System.out.println();
+		System.out.println("*****************************************************************************");
+		System.out.println("Pour les prochains tours, vous pouvez à présent choisir des tuiles ");
+		System.out.println("parmi celles du centre de table mais le premier qui s'y sert prend la tuile 1");
+		System.out.println("*****************************************************************************");
+		System.out.println();
 		afficheApresNChoix();
 		System.out.println("Terminé");
 	}

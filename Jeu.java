@@ -12,10 +12,16 @@ public class Jeu {
 		a[2].couleur = "J";
 		a[3].couleur = "R";
 		
-		//c.addAtCenter(a, "R");
-		c.affiche(a,"R");
-		System.out.println(c.c.size());*/
+		Tuiles [] b = {new Tuiles(),new Tuiles(),new Tuiles(),new Tuiles()};
+		b[0].couleur = "N";
+		b[1].couleur = "R";
+		b[2].couleur = "N";
+		b[3].couleur = "B";
 		
+		CentreDeTable.afficheCentreDeTable(a,"R");
+		CentreDeTable.afficheCentreDeTable(b,"N");
+		System.out.println("La taille de centre de table est :" + CentreDeTable.c.size());
+		*/
 		
 	}
 	
