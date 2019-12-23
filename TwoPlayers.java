@@ -42,7 +42,7 @@ public class TwoPlayers extends CommonToAllPlayers{
 		int n = 1;
 		int c = nbFabrique();
 		String s = nextPlayer();
-		while(n<=c) {
+		while(n<c) {
 			afficheApresChoix(s,firstIndice);
 			n++;
 			s=nextPlayer();

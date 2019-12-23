@@ -5,7 +5,7 @@ public class Plateau {
 	protected String proprietaire;
 	protected String [] s = new String[5];
 	protected String[] mos = {"[bl]","[j]","[r]","[n]","[b]"};
-	protected Defausse def;
+	protected static Defausse defausse;
 	protected int [] lignes = {1,2,3,4,5};
 	protected int ligneChoisie;
 	
@@ -13,7 +13,7 @@ public class Plateau {
 		this.proprietaire = s;
 		affichePlateau();
 		System.out.println();
-		def = new Defausse(s);
+		defausse = new Defausse(s);
 		
 	}
 
@@ -134,7 +134,6 @@ public class Plateau {
 				for(int j=n-ligne;j<n;j++) { 
 					if(nbreTuilesAPlacer>ligne) {
 						diff =nbreTuilesAPlacer-ligne;
-						System.out.println("La/Les " + "seul/" + diff + " tuile(s) sera(ont) rajouté(s)  à la défausse");
 					} else {
 					for(int c=0;c<nbreTuilesAPlacer;c++) {
 						s[j] = "[" + ch + "]";
@@ -146,9 +145,14 @@ public class Plateau {
 			}
 		}
 		affiche(ligne,ch,nbreTuilesAPlacer);
-		System.out.println();
+		//afficheDefausse();
 	}
 	
+	public void addToDefausse(int n,String s) {
+		for(int a=0;a<n;a++) {
+			defausse.defausse[a] = s;
+		}
+	}
 	
 	public void affiche(int ligne, String ch,int nbreTuilesAPlacer) {
 		System.out.print(ligne + " ");
@@ -160,5 +164,23 @@ public class Plateau {
 			s[i] = "[" + ch + "]";
 			System.out.print(s[i] + " ");
 		}
+		System.out.println();
+	}
+	
+	
+	/*public void afficheDefausse() {
+		for(int i=0;i<defausse.n.length;i++) {
+			System.out.print(defausse.n[i] + "  ");
+		}
+		
+		System.out.println();
+		
+		for(int i=0;i<defausse.defausse.length;i++) {
+			defausse.defausse[i] = "[ ]";
+			System.out.print(defausse.defausse[i] + " ");
+		}
+	}*/
+	public void afficheApresChoix() {
+		
 	}
 }
