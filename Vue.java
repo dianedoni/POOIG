@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -86,9 +85,9 @@ public class Vue extends JPanel{
 	    this.add(this.quitter);
 	    
 	}else if(Jeu.jeu.etat == Jeu.jeu.etat.GAGNE){
-	     this.setBackground(Color.grey);
+	    this.setBackground(Color.grey);
 	    this.label1 = new JLabel("VOUS AVEZ GAGNE");
-	     this.label2 = new JLabel("Votre score est de : ");
+	    this.label2 = new JLabel("Votre score est de : ");
 	    
 	    this.rejouer.addActionListener(new ActionListener(){
 
@@ -124,39 +123,3 @@ public class Vue extends JPanel{
     }
 
 } 
-=======
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
-public class Vue extends JFrame implements ActionListener{
-protected JPanel pan;
-protected static JButton jouer,recommencer,quitter;
-
-public Vue(){
-this.setTitle("Azul");
-this.pan = new JPanel();
-this.jouer = new JButton("Jouer");
-this.recommencer = new JButton("Recommencer");
-this.quitter = new JButton("Quitter");
-this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-this.setSize(800,800);
-this.setResizable(true);
-this.setLocationRelativeTo(null);
-this.pan.add(jouer);
-this.pan.add(recommencer);
-this.pan.add(quitter);
-this.setContentPane(pan);
-this.setVisible(true);
-}
-
-
-public static void main(String[] args){
-Vue vue = new Vue();
-}
-
-public void actionPerformed(ActionEvent clic){
-
-}
-
-} 
->>>>>>> 295cb416269d035911207f7707e94ee316839d87
