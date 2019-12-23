@@ -12,6 +12,7 @@ public class JeuVue extends JPanel{
     };
     protected static ETAT etat = ETAT.MENU;
     protected LinkedList<TuilesVue> tuiles;
+    
 
 
 
