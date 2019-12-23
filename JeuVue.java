@@ -42,8 +42,15 @@ public class JeuVue extends JPanel{
 	    String nom = JOptionPane.showInputDialog("Veuillez saisir le nom du joueur "+ cpt);
 	    if(!nom.isEmpty()){
 		joueurs[i] = new PlayerVue(nom.toUpperCase());
+	    }else{
+		i-=1;
 	    }
 	}
+	return joueurs;
+    }
+
+    public void creerPanelJoueur(){
+	LinkedList<PlayerVue> joueur = ;
     }
 }
 
