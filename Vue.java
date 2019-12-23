@@ -12,7 +12,7 @@ public class Vue extends JPanel{
     public Vue(){
 	
 	if(Jeu.jeu.etat == Jeu.jeu.etat.MENU){
-	    this.setBackground(Color.grey);
+	    this.setBackground(Color.GRAY);
 	    this.label1 = new JLabel("MENU");
 
 	    this.jouer.addActionListener(new ActionListener(){
@@ -42,15 +42,15 @@ public class Vue extends JPanel{
 			}
 		    }
 		});
-	    this.add(this.label);
+	    this.add(this.label1);
 	    this.add(this.jouer);
 	    this.add(this.quitter);
 	    
 	}else if(Jeu.jeu.etat == Jeu.jeu.etat.PERDU){
 
-	    this.setBackground(Color.grey);
+	    this.setBackground(Color.GRAY);
 	    this.label1 = new JLabel("VOUS AVEZ PERDU");
-	    this.label2 = new Jlabel("Votre score est de : ");
+	    this.label2 = new JLabel("Votre score est de : ");
 	    
 	    this.rejouer.addActionListener(new ActionListener(){
 
@@ -85,7 +85,7 @@ public class Vue extends JPanel{
 	    this.add(this.quitter);
 	    
 	}else if(Jeu.jeu.etat == Jeu.jeu.etat.GAGNE){
-	    this.setBackground(Color.grey);
+	    this.setBackground(Color.GRAY);
 	    this.label1 = new JLabel("VOUS AVEZ GAGNE");
 	    this.label2 = new JLabel("Votre score est de : ");
 	    
@@ -94,7 +94,7 @@ public class Vue extends JPanel{
 		    public void actionPerformed(ActionEvent clic){
 			if(clic.getSource() == rejouer){
 
-			    JEu.jeu.etat = Jeu.jeu.etat.MENU;
+			    Jeu.jeu.etat = Jeu.jeu.etat.MENU;
 			    Jeu.fenetre.dispose();
 			    Jeu.fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			    Jeu.fenetre.setSize(800,800);
