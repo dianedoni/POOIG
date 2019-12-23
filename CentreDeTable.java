@@ -1,4 +1,5 @@
 import java.util.LinkedList;
+import java.util.Scanner;
 
 public class CentreDeTable {
 
@@ -37,10 +38,18 @@ public class CentreDeTable {
 					c.get(i).findFirstColor();
 				}
 				System.out.print( c.get(i).couleur + " " );
+				c.get(i).setColor("V");
 			}
+			
 		} 
 		System.out.println();
 		}
 	
+	public void choixAuCentreDeTable() {
+		String s="";
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Voulez vous choisir dans le centre de table");
+		s = sc.nextLine();
+	}
 }
 

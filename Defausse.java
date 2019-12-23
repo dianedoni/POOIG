@@ -3,7 +3,7 @@ public class Defausse {
 
 		protected Joueur joueur;
 		protected Plateau plateau;
-		protected String[] defausse = new String[7];
+		protected static String[] defausse = new String[7];
 		protected int [] n = {-1,-1,-2,-2,-2,-3,-3};
 		
 		public Defausse(String n) {
