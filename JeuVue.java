@@ -21,15 +21,48 @@ public class JeuVue extends JPanel{
 
     public JeuVue(){
 	this.etat = ETAT.JEU;
+	this.vue = new Vue();
+	this.joueurs = new LinkedList<PlayerVue>();
+	this.fabriques = new FabriquesVue();
+	this.defausse = new DefausseVue();
 	
     }
 
-    public void gagne(){
-
+    public void paintComponent(Graphics g){
+	joueursInfo();
+	if(etat == etat.JEU){
+	    if(this.gagne()){
+		this.etat = etat.GAGNE;
+		Jeu.fenetre.dispose();
+		Jeu.fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		Jeu.fenetre.setSize(800,800);
+		Jeu.fenetre.setResizable(true);
+		Jeu.fenetre.setLocationRelativeTo(null);
+		Jeu.fenetre.setContentPane(new Vue());
+		Jeu.fenetre.repaint();
+		Jeu.fenetre.revalidate();
+		Jeu.fenetre.setVisible(true);
+	    }else if(this.perdu()){
+		this.etat = etat.PERDU;
+		Jeu.fenetre.dispose();
+		Jeu.fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		Jeu.fenetre.setSize(800,800);
+		Jeu.fenetre.setResizable(true);
+		Jeu.fenetre.setLocationRelativeTo(null);
+		Jeu.fenetre.setContentPane(new Vue());
+		Jeu.fenetre.repaint();
+		Jeu.fenetre.revalidate();
+		Jeu.fenetre.setVisible(true);
+	    }
+	}
     }
 
-    public void perdu(){
+    public boolean gagne(){
+	return true;
+    }
 
+    public boolean perdu(){
+	return false;
     }
 
 

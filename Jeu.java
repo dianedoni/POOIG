@@ -29,8 +29,9 @@ public class Jeu {
 		fenetre.setSize(800,800);
 		fenetre.setResizable(true);
 		fenetre.setLocationRelativeTo(null);
+		fenetre.setContentPane(new Vue());		
+		fenetre.setVisible(true);
 		
-		jeu.joueursInfo();
 
 		}else{
 
