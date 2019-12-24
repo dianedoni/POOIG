@@ -58,7 +58,7 @@ public class Manche {
 	    System.out.println("Combien de joueurs pour cette partie?"); 
 	    try{nbJoueurs = sc.nextInt();}
 	    catch(InputMismatchException i) {
-	    	System.out.println("Vous devez entrer un nombre et non des caractères");
+	    	System.out.println("Vous devez entrer un nombre et non des caracteres");
 	    }
 	    System.out.println("Il y a " + nbJoueurs + " joueurs");
 		n = nbJoueurs;

@@ -94,8 +94,8 @@ public class Sac extends Tuiles{
 		}	
 	}
 	
-	/*Dans ce code, les tuiles sont rangées dans un ordre précis
-	 * dans le sens ou les tuiles rouges sont varient de la position 1 à
+	/*Dans ce code, les tuiles sont rangees dans un ordre precis
+	 * dans le sens ou les tuiles rouges sont varient de la position 1 a
 	 * la position 21 etc.... Donc determiner la position d'une tuile 
 	 * permet donc de savoir de quelle couleur est la tuile. Cette fonctionne se montrera utile 
 	 * dans la classe Fabrique au moment de remplir les fabriques.
@@ -139,7 +139,7 @@ public class Sac extends Tuiles{
 	}
 	
 	/*
-	 * Supprime un element donné de la liste de tuiles
+	 * Supprime un element donne de la liste de tuiles
 	 * Utile pour eviter d'abuser des attributs dans le code
 	 */
 	public void remove(int i) {

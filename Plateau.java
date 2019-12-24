@@ -110,7 +110,7 @@ public class Plateau {
 	}
 	
 	public int choixDeLigne() {
-		System.out.println("sur quelle ligne désirez vous placer vos tuiles ");
+		System.out.println("sur quelle ligne desirez vous placer vos tuiles ");
 		System.out.println("Entrez un chiffre compris entre 1 et 5");
 		Scanner sc = new Scanner(System.in);
 		try { this.ligneChoisie = sc.nextInt(); }

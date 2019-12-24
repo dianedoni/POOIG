@@ -40,7 +40,7 @@ public class Joueur {
 		if(this.mosaique.size() == 0) {
 			System.out.println("La mosaique de " + this.nom + " est vide");
 		}else {
-			System.out.print("La mosaique de "+ this.nom+ " est composé des tuiles suivantes : ");
+			System.out.print("La mosaique de "+ this.nom+ " est compose des tuiles suivantes : ");
 			for(int i =0;i<a.length;i++) {
 				if(a[i].couleur.equals(s) && this.nom.equals(nom)) {
 				System.out.print( a[i].couleur + " " );

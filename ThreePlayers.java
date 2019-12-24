@@ -59,7 +59,7 @@ public class ThreePlayers extends CommonToAllPlayers {
 		afficheApresChoixFirst();
 		System.out.println();
 		System.out.println("*****************************************************************************");
-		System.out.println("Pour les prochains tours, vous pouvez à présent choisir des tuiles ");
+		System.out.println("Pour les prochains tours, vous pouvez a present choisir des tuiles ");
 		System.out.println("parmi celles du centre de table mais le premier qui s'y sert prend la tuile 1");
 		System.out.println("*****************************************************************************");
 		System.out.println();

@@ -21,16 +21,16 @@ public interface Fabrique {
 	
 	 void createFabrique();
 	
-	/*Permet de déterminer le nombre de tuiles
+	/*Permet de determiner le nombre de tuiles
 	 * a utiliser au cours d une manche
-	 * pour pouvoir savoir le nombre de tuiles à distribuer dans une manche.
+	 * pour pouvoir savoir le nombre de tuiles a distribuer dans une manche.
 	 */
 	 int nombreDeTuilesAPlacer();
 	
 	 /*
-	  * On remplit au préalable la liste de tableaux de tuiles de 
-	  * tuiles vides afin de ne pas avoir d'erreurs à la compilation par rapport 
-	  * à l'instanciation
+	  * On remplit au prealable la liste de tableaux de tuiles de 
+	  * tuiles vides afin de ne pas avoir d'erreurs a la compilation par rapport 
+	  * a l'instanciation
 	  */
 	 void remplissage();
 	
@@ -50,7 +50,7 @@ public interface Fabrique {
 	public int firstIndice();
 	
 	/*
-	 * Comme son nom l'indique, cette fonction est celle qui permet à un 
+	 * Comme son nom l'indique, cette fonction est celle qui permet a un 
 	 * quelconque joueur de choisir la tuile qu'il veut
 	 */
 	public void chooseTuile(String name);

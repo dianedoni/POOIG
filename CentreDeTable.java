@@ -32,7 +32,7 @@ public class CentreDeTable {
 		if(c.size() == 0) {
 			System.out.println("Le centre de table est vide");
 		}else {
-			System.out.print("Le centre de table est composé des tuiles suivantes : ");
+			System.out.print("Le centre de table est compose des tuiles suivantes : ");
 			for(int i =0;i<c.size();i++) {
 				if(c.get(i).couleur.equals("V") ) {
 					c.get(i).findFirstColor();

@@ -8,7 +8,7 @@ public class FabriquesVue{
 
     public FabriquesVue(){
 	this.icof = new ImageIcon(getClass().getResource("Image/Fabriques.png"));
-	this.imgt = this.icof.getImage();
+	this.imgf = this.icof.getImage();
 	this.fabrique1 = new LinkedList<TuilesVue>();
 	this.fabrique2 = new LinkedList<TuilesVue>();
 	this.fabrique3 = new LinkedList<TuilesVue>();
@@ -34,7 +34,7 @@ public class FabriquesVue{
 	int cpt = 0;
 	while(cpt < 4 ){
 	    Random rand = new Random();
-	    int tmp = 1 + random.nextInt(5-1);
+	    int tmp = 1 + rand.nextInt(5-1);
 	    if(tmp == 1){
 		liste.add(new TuilesVue("blanc"));
 	    }else if(tmp == 2){

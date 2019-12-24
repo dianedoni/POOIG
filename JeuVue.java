@@ -12,8 +12,9 @@ public class JeuVue extends JPanel{
 	GAGNE
     };
     protected static ETAT etat = ETAT.MENU;
-    protected LinkedList<TuilesVue> tuiles;
     protected LinkedList<PlayerVue> joueurs;
+    protected FabriquesVue fabriques;
+    protected DefausseVue defausse;
 
 
 

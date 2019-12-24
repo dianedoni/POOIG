@@ -63,7 +63,7 @@ public class CommonToAllPlayers implements Fabrique{
 	
 	public void remplissage() {
 		int n = nbFabrique(); // trouvons le nombre de fabrique
-		createFabrique(); // Ensuite, on crée des fabriques vides qu'on va remplir
+		createFabrique(); // Ensuite, on cree des fabriques vides qu'on va remplir
 		int e = 100; 
 		int c = 0;
 		int b = 0;
