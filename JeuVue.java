@@ -15,6 +15,7 @@ public class JeuVue extends JPanel{
     protected LinkedList<PlayerVue> joueurs;
     protected FabriquesVue fabriques;
     protected DefausseVue defausse;
+    protected CentreDeTableVue centre;
 
 
 
@@ -25,7 +26,7 @@ public class JeuVue extends JPanel{
 	this.joueurs = new LinkedList<PlayerVue>();
 	this.fabriques = new FabriquesVue();
 	this.defausse = new DefausseVue();
-	
+	this.centre = new CentreDeTableVue();
     }
 
     public void paintComponent(Graphics g){

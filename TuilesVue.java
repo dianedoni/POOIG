@@ -2,6 +2,7 @@ import java.awt.*;
 import javax.swing.*;
 public class TuilesVue{
     protected String couleur;
+    protected int posX,posY;
     protected Image imgt;
     protected ImageIcon icot;
     protected int nb_max_tuiles = 100;
@@ -26,5 +27,10 @@ public class TuilesVue{
 		this.imgt = this.icot.getImage();
 	    }
 	}
+    }
+
+
+    public void afficheTuile(Graphics g){
+	g.drawImage(this.imgt,0,0,null);
     }
 }
