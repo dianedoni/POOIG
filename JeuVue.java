@@ -50,7 +50,7 @@ public class JeuVue extends JPanel{
     }
 
     public void creerPanelJoueur(){
-	LinkedList<PlayerVue> joueur = ;
+	LinkedList<PlayerVue> joueur = new LinkedList<PlayerVue>() ;
     }
 }
 

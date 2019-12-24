@@ -1,7 +1,7 @@
 public class ScoreVue{
     protected int score;
 
-    public Score(){
+    public ScoreVue(){
 	this.score = 0;
     }
 
