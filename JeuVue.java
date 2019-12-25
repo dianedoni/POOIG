@@ -12,6 +12,7 @@ public class JeuVue extends JPanel{
 	GAGNE
     };
     protected static ETAT etat = ETAT.MENU;
+    protected TuilesVue tuile;
     protected LinkedList<PlayerVue> joueurs;
     protected FabriquesVue fabriques;
     protected DefausseVue defausse;
@@ -63,7 +64,7 @@ public class JeuVue extends JPanel{
     }
 
     public boolean perdu(){
-	return false;
+	return (tuile.nb_max_tuiles <=0);
     }
 
 
