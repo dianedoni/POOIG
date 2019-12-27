@@ -13,7 +13,7 @@ public class DefausseVue{
 	this.imgd = this.icod.getImage();
     }
 
-    public voic afficheDefausse(Graphics g){
+    public void afficheDefausse(Graphics g){
 	g.drawImage(this.imgd,0,0,null);
     }
 }
