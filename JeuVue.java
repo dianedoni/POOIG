@@ -14,7 +14,7 @@ public class JeuVue extends JPanel{
     protected static ETAT etat = ETAT.MENU;
     protected TuilesVue tuile;
     protected LinkedList<PlayerVue> joueurs;
-    protected FabriquesVue fabriques;
+    protected LinkedList<FabriquesVue> fabriques;
     protected CentreDeTableVue centre;
 
 
@@ -24,7 +24,7 @@ public class JeuVue extends JPanel{
 	this.etat = ETAT.JEU;
 	this.vue = new Vue();
 	this.joueurs = new LinkedList<PlayerVue>();
-	this.fabriques = new FabriquesVue();
+	this.fabriques = new LinkedList<FabriquesVue>();
 	this.centre = new CentreDeTableVue();
     }
 
