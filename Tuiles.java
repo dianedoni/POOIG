@@ -1,14 +1,14 @@
 import java.util.LinkedList;
 
 public class Tuiles extends Objet {
-	protected LinkedList<Objet> objets;
+	protected static LinkedList<Objet> objets;
 	protected static int num=-1;
 	protected int id;
 	{num++;}
 	
 	public Tuiles(String c, int n,int pos){
 		super(c,n,pos);
-		this.objets = new LinkedList<Objet>();
+		objets = new LinkedList<Objet>();
 		this.id = num;
 	}
 	
@@ -40,7 +40,7 @@ public class Tuiles extends Objet {
 		}
 		
 		if(n == 6) {
-			this.couleur = "BL";
+			this.couleur = "W";
 		}
 		
 		/*switch(n){
@@ -98,7 +98,7 @@ public class Tuiles extends Objet {
 		}
 		
 		if(n == 6) {
-			s = "BL";
+			s = "W";
 		}
 		return s;
 	}
@@ -121,8 +121,11 @@ public class Tuiles extends Objet {
 		}
 		
 		if(this.couleur.equals("V") && this.nbre == 6){
-			setColor("BL");
+			setColor("W");
 		}
 	}
 	
+	public void remove(int i) {
+		objets.remove(i);
+	}
 }

@@ -72,7 +72,7 @@ public interface Fabrique {
 	
 	public void chooseTuileN(String s, String name);
 	
-	public void chooseTuileBL(String s,String name);
+	public void chooseTuileW(String s,String name);
 		
 	public void afficheApresChoixFirst();
 	

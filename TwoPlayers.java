@@ -24,15 +24,12 @@ public class TwoPlayers extends CommonToAllPlayers{
 			System.out.println("Le prochain joueur sera " + manche.liste.get(0).nom);
 			s = manche.liste.get(0).nom;
 			firstIndice = 0;
+			CommonToAllPlayers.indice = firstIndice;
 		}else {
-			try{
 			System.out.println("Le prochain joueur sera " + manche.liste.get(1).nom);
 			s = manche.liste.get(1).nom;
-				firstIndice = 1;
-			}
-			catch(IndexOutOfBoundsException i) {
-			System.out.println("Instance non definie");
-			}
+			firstIndice = 1;
+			CommonToAllPlayers.indice = firstIndice;
 		}
 		return s;
 	}		
@@ -42,10 +39,23 @@ public class TwoPlayers extends CommonToAllPlayers{
 		int n = 1;
 		int c = nbFabrique();
 		String s = nextPlayer();
-		while(n<c) {
-			afficheApresChoix(s,firstIndice);
-			n++;
+		while(CentreDeTable.c.size() != 0 && n<c) {
+			CentreDeTable.choixAuCentreDeTable();
+			while(!CentreDeTable.yesOrNo.equals("Y") && !CentreDeTable.yesOrNo.equals("N") ) {		
+					System.out.println("Entree invalide!");
+					System.out.println("On recommmence. Maintenant, entrez Y ou N");
+					CentreDeTable.choixAuCentreDeTable();
+			}
+
+			if(CentreDeTable.yesOrNo.equals("N")) {
+				afficheApresChoix(s,firstIndice);
+				s=nextPlayer();
+		} else {
+			CentreDeTable.choix();
+			manche.plateaux.get(indice).afficheApresChoix(manche.plateaux.get(indice).ligneChoisie,
+			manche.liste.get(indice).tuileChoisie,manche.liste.get(indice).nbreTuilesChoisies);
 			s=nextPlayer();
+		}
 		}
 	}
 	
@@ -53,7 +63,6 @@ public class TwoPlayers extends CommonToAllPlayers{
 	public void gameWithTwoPlayers() {
 		remplirFabrique();
 		System.out.println();
-		//System.out.println();
 		manche.consignes();
 		afficheApresChoixFirst();
 		System.out.println();

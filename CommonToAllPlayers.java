@@ -6,7 +6,8 @@ public class CommonToAllPlayers implements Fabrique{
 	protected static Manche manche = new Manche() ;
 	protected static CentreDeTable centre;
 	protected String nameFirstPlayer;
-	protected int firstIndice;
+	protected static int firstIndice;
+	protected static int indice;
 	protected static int tour=1;
 	
 	
@@ -146,8 +147,8 @@ public class CommonToAllPlayers implements Fabrique{
 			chooseTuileN(s,name);
 		}
 		
-		if(s.charAt(1) == 'B' && s.charAt(2) == 'L') {
-			chooseTuileBL(s,name);
+		if(s.charAt(1) == 'W') {
+			chooseTuileW(s,name);
 		}
 		
 	}
@@ -202,20 +203,10 @@ public class CommonToAllPlayers implements Fabrique{
 		
 	}
 	
-	public void chooseTuileBL(String s,String name) {
-		System.out.println("Vous avez choisi la fabrique " + s.charAt(0) + " et la/les tuile(s) BL");
+	public void chooseTuileW(String s,String name) {
+		System.out.println("Vous avez choisi la fabrique " + s.charAt(0) + " et la/les tuile(s) W");
 		System.out.println();
-		if(name.equals(nameFirstPlayer)) {
-		int c = Character.getNumericValue( s.charAt(0));
-		String ch = String.valueOf(s.charAt(1));
-		String h = ch + String.valueOf(s.charAt(2));
-		manche.liste.get(firstIndice).afficheMosaique(tableaux.get(c),h,nameFirstPlayer);
-		CentreDeTable.afficheCentreDeTable(tableaux.get(c),h);
-		this.resetColor(tableaux.get(c),h);
-		System.out.println();
-		}else {
-			search(s,name);
-		}
+		search(s,name);
 	}
 	
 	public void afficheApresChoixFirst() {
@@ -233,7 +224,7 @@ public class CommonToAllPlayers implements Fabrique{
 		System.out.println();
 		manche.attributionPlateaux();
 		System.out.print(nameFirstPlayer + " ");
-		manche.plateaux.get(firstIndice).placerTuile(manche.plateaux.get(firstIndice).ligneChoisie,
+		manche.plateaux.get(firstIndice).afficheApresChoix(manche.plateaux.get(firstIndice).ligneChoisie,
 		manche.liste.get(firstIndice).tuileChoisie,manche.liste.get(firstIndice).nbreTuilesChoisies);
 	}
 	
@@ -249,7 +240,7 @@ public class CommonToAllPlayers implements Fabrique{
 		}
 		System.out.println();
 		System.out.print(name + " ");
-		manche.plateaux.get(indice).placerTuile(manche.plateaux.get(indice).ligneChoisie,
+		manche.plateaux.get(indice).afficheApresChoix(manche.plateaux.get(indice).ligneChoisie,
 		manche.liste.get(indice).tuileChoisie,manche.liste.get(indice).nbreTuilesChoisies);
 		tour++;
 	}

@@ -54,10 +54,23 @@ public class FourPlayers extends CommonToAllPlayers{
 		int n = 1;
 		int c = nbFabrique();
 		String s = nextPlayer();
-		while(n<=c) {
-			afficheApresChoix(s,firstIndice);
-			n++;
+		while(CentreDeTable.c.size() != 0 && n<c) {
+			CentreDeTable.choixAuCentreDeTable();
+			while(!CentreDeTable.yesOrNo.equals("Y") && !CentreDeTable.yesOrNo.equals("N") ) {		
+					System.out.println("Entree invalide!");
+					System.out.println("On recommmence. Maintenant, entrez Y ou N");
+					CentreDeTable.choixAuCentreDeTable();
+			}
+
+			if(CentreDeTable.yesOrNo.equals("N")) {
+				afficheApresChoix(s,firstIndice);
+				s=nextPlayer();
+		} else {
+			CentreDeTable.choix();
+			manche.plateaux.get(firstIndice).afficheApresChoix(manche.plateaux.get(firstIndice).ligneChoisie,
+			manche.liste.get(firstIndice).tuileChoisie,manche.liste.get(firstIndice).nbreTuilesChoisies);
 			s=nextPlayer();
+		}
 		}
 	}
 	public void gameWithFourPlayers() {
