@@ -9,7 +9,7 @@ public class Plateau {
 	protected int [] lignes = {1,2,3,4,5};
 	protected static int ligneChoisie;
 	protected static int nbreAffichage=0;
-	protected static String tuileChoisie;
+	protected String tuileChoisie;
 	
 	public Plateau(String s) {
 		this.proprietaire = s;
@@ -20,7 +20,7 @@ public class Plateau {
 	}
 
 	private class Defausse{
-		protected Joueur joueur;
+		//protected Joueur joueur;
 		protected String[] defausse = new String[7];
 		protected int [] n = {-1,-1,-2,-2,-2,-3,-3};
 		
@@ -47,7 +47,7 @@ public class Plateau {
 	
 	public void firstLine() {
 		int diff = 0;
-		if(nbreAffichage == 0) {
+		if(nbreAffichage == 0 || ligneChoisie != 1) {
 		s[4] = "[ ]";                    
 		System.out.print(lignes[0] + "                " + s[4] + "    ");
 		for(int i=0;i<mos.length;i++) {
@@ -60,6 +60,7 @@ public class Plateau {
 			for(int i=0;i<mos.length;i++) {
 				System.out.print(mos[i] + " ");
 			}
+			System.out.println();
 		} else {
 			diff = ligneChoisie-1;
 		}
@@ -67,7 +68,7 @@ public class Plateau {
 	
 	public void scndLine() {	
 		int diff = 0;
-		if(nbreAffichage == 0) {
+		if(nbreAffichage == 0 || ligneChoisie != 2 ) {
 		mos[0] = "[b]";
 		mos[1] = "[bl]";
 		mos[2] = "[j]";
@@ -96,6 +97,7 @@ public class Plateau {
 			for(int i=0;i<mos.length;i++) {
 				System.out.print(mos[i] + " ");
 			}
+			System.out.println();
 		} else {
 			diff = ligneChoisie-2;
 		}
@@ -103,7 +105,7 @@ public class Plateau {
 	
 	public void thrdLine() {
 		int diff = 0;
-		if(nbreAffichage == 0) {
+		if(nbreAffichage == 0 || ligneChoisie != 3) {
 		mos[0] = "[n]";
 		mos[1] = "[b]";
 		mos[2] = "[bl]";
@@ -134,6 +136,7 @@ public class Plateau {
 			for(int i=0;i<mos.length;i++) {
 				System.out.print(mos[i] + " ");
 			}
+			System.out.println();
 		} else {
 			diff = ligneChoisie-3;
 		}
@@ -141,7 +144,7 @@ public class Plateau {
 	
 	public void frthLine(){
 		int diff = 0;
-		if(nbreAffichage == 0) {
+		if(nbreAffichage == 0 || ligneChoisie != 4) {
 		mos[0] = "[r]";
 		mos[1] = "[n]";
 		mos[2] = "[b]";
@@ -176,6 +179,7 @@ public class Plateau {
 			for(int i=0;i<mos.length;i++) {
 				System.out.print(mos[i] + " ");
 			}
+			System.out.println();
 		} else {
 			diff = ligneChoisie-4;
 		}
@@ -183,7 +187,7 @@ public class Plateau {
 	
 	public void fifthLine() {
 		int diff = 0;
-		if(nbreAffichage == 0) {
+		if(nbreAffichage == 0 || ligneChoisie != 5) {
 		mos[0] = "[j]";
 		mos[1] = "[r]";
 		mos[2] = "[n]";
@@ -212,6 +216,7 @@ public class Plateau {
 			for(int i=0;i<mos.length;i++) {
 				System.out.print(mos[i] + " ");
 			}
+			System.out.println();
 		} else {
 			diff = ligneChoisie-5;
 		}
@@ -264,9 +269,16 @@ public class Plateau {
 			System.out.print(defausse.defausse[i] + " ");
 		}
 	}*/
+	
+	public String exchangeValues(String ch, String s) {
+		ch = s;
+		return ch;
+	}
+	
 	public void afficheApresChoix(int ligne, String ch,int nbreTuilesAPlacer) {
-		tuileChoisie=ch;
-		placerTuile(ligne,tuileChoisie,nbreTuilesAPlacer);
+	
+		tuileChoisie = ch;
+		placerTuile(ligne,ch,nbreTuilesAPlacer);
 		nbreAffichage++;
 		affichePlateau();
 	}

@@ -131,6 +131,18 @@ public class CommonToAllPlayers implements Fabrique{
 		Scanner sc = new Scanner(System.in);
 		String s = "";
 		s = sc.nextLine();
+		if(s.equals(null)) {
+			System.out.println("Entree invalide! Suivez les instructions precedentes");
+			chooseTuile(name);
+		} else {
+			int c = Character.getNumericValue(s.charAt(0));
+			String ch = String.valueOf(s.charAt(1));
+			if((c<0 && c>=nbFabrique()) || (!ch.equals("R")
+		&& !ch.equals("J") && !ch.equals("B") && !ch.equals("N") && !ch.equals("w"))) {
+			System.out.println("Entree invalide! Suivez les instructions precedentes");
+			chooseTuile(name);
+		}
+		}
 		if(s.charAt(1) == 'R') {
 			chooseTuileR(s,name);
 		}
@@ -242,7 +254,6 @@ public class CommonToAllPlayers implements Fabrique{
 		System.out.print(name + " ");
 		manche.plateaux.get(indice).afficheApresChoix(manche.plateaux.get(indice).ligneChoisie,
 		manche.liste.get(indice).tuileChoisie,manche.liste.get(indice).nbreTuilesChoisies);
-		tour++;
 	}
 	
 	
