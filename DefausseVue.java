@@ -14,6 +14,9 @@ public class DefausseVue{
     }
 
     public void afficheDefausse(Graphics g){
-	g.drawImage(this.imgd,0,0,null);
+	g.drawImage(this.imgd,100,100,null);
+	for(int i = 0;i<defausse.size();i++){
+	    defausse.get(i).afficheTuile(g);
+	}
     }
 }

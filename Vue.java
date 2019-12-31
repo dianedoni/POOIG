@@ -22,7 +22,7 @@ public class Vue extends JPanel{
 
 			    Jeu.fenetre.dispose();
 			    Jeu.fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			    Jeu.fenetre.setSize(800,800);
+			    Jeu.fenetre.setSize(1600,800);
 			    Jeu.fenetre.setResizable(true);
 			    Jeu.fenetre.setLocationRelativeTo(null);
 			    Jeu.jeu = new JeuVue();
@@ -60,7 +60,7 @@ public class Vue extends JPanel{
 			    Jeu.jeu.etat = Jeu.jeu.etat.MENU;
 			    Jeu.fenetre.dispose();
 			    Jeu.fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			    Jeu.fenetre.setSize(800,800);
+			    Jeu.fenetre.setSize(1600,800);
 			    Jeu.fenetre.setResizable(true);
 			    Jeu.fenetre.setLocationRelativeTo(null);
 			    Jeu.fenetre.setContentPane(new Vue());
@@ -97,7 +97,7 @@ public class Vue extends JPanel{
 			    Jeu.jeu.etat = Jeu.jeu.etat.MENU;
 			    Jeu.fenetre.dispose();
 			    Jeu.fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			    Jeu.fenetre.setSize(800,800);
+			    Jeu.fenetre.setSize(1600,800);
 			    Jeu.fenetre.setResizable(true);
 			    Jeu.fenetre.setLocationRelativeTo(null);
 			    Jeu.fenetre.setContentPane(new Vue());

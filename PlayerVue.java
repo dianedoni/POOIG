@@ -1,4 +1,6 @@
 import java.util.*;
+import java.awt.*;
+import javax.swing.*;
 public class PlayerVue{
     protected String prenom;
     protected int id = -1;
@@ -15,6 +17,14 @@ public class PlayerVue{
 	this.defausse = new DefausseVue();
 	this.mur = new MurVue();
     }
-    
+
+
+    public void affichePlayer(Graphics g){
+	g.drawString(this.prenom,30,30);
+	g.drawString("Score : "+this.score.score,30,30);
+	mesTuiles.afficheMotif(g);
+	defausse.afficheDefausse(g);
+	mur.afficheMur(g);
+    }
   
 }
