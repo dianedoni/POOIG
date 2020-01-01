@@ -25,7 +25,7 @@ public class Jeu {
 
 		fenetre = new JFrame("Azul");
 		fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		fenetre.setSize(800,800);
+		fenetre.setSize(1600,800);
 		fenetre.setResizable(true);
 		fenetre.setLocationRelativeTo(null);
 		fenetre.setContentPane(new Vue());		

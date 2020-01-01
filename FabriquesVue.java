@@ -5,7 +5,7 @@ public class FabriquesVue extends JPanel{
     protected LinkedList<TuilesVue> fabrique1;
     protected Image imgf;
     protected ImageIcon icof;
-    protected int posX,posY = 10;
+    protected int posX,posY;
 
     public FabriquesVue(){
 	this.icof = new ImageIcon(getClass().getResource("Image/Fabriques.png"));

@@ -117,7 +117,6 @@ public class JeuVue extends JPanel{
 	LinkedList<FabriquesVue> liste = new LinkedList<FabriquesVue> ();
 	for(int i = 0;i<n;i++){
 	    liste.add(new FabriquesVue(posX,posY));
-	    this.add(new FabriquesVue(posX,posY));
 	    posX += 200;
 	}
 	return liste;
