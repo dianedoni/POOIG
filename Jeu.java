@@ -15,7 +15,6 @@ public class Jeu {
 
 		Scanner sc = new Scanner(System.in);
 		int tmp = sc.nextInt();
-
 		if(tmp == 1){
 
 		Manche m = new Manche();
@@ -26,7 +25,7 @@ public class Jeu {
 
 		fenetre = new JFrame("Azul");
 		fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		fenetre.setSize(1600,800);
+		fenetre.setSize(800,800);
 		fenetre.setResizable(true);
 		fenetre.setLocationRelativeTo(null);
 		fenetre.setContentPane(new Vue());		
@@ -34,7 +33,7 @@ public class Jeu {
 		
 
 		}else{
-
+		
 		System.out.println("Veuillez saisir une donnee coherente");
 		choix();
 		}

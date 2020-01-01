@@ -1,20 +1,6 @@
 
 public class ThreePlayers extends CommonToAllPlayers {
 	
-	public void remplirFabrique() {
-		System.out.println();
-		System.out.println("On dispose des fabriques suivantes");
-		remplissage();
-		for(int i=0;i<nbFabrique();i++) {
-			System.out.print( i + "     ");
-			for(int j=0;j<4;j++) {
-				System.out.print(tableaux.get(i)[j].couleur + " ");
-			}
-			System.out.println();
-			}
-		System.out.println("Il reste " + (Manche.sac.tuiles.size()-1) + " tuiles dans le sac");
-	}
-	
 	public String nextPlayer() {
 		String s = "";
 		int nb = nbreJoueurs();
@@ -44,16 +30,30 @@ public class ThreePlayers extends CommonToAllPlayers {
 		int n = 1;
 		int c = nbFabrique();
 		String s = nextPlayer();
-		while(n<=c) {
-			afficheApresChoix(s,firstIndice);
-			n++;
+		while(CentreDeTable.c.size() != 0 && n<c) {
+			CentreDeTable.choixAuCentreDeTable();
+			while(!CentreDeTable.yesOrNo.equals("Y") && !CentreDeTable.yesOrNo.equals("N") ) {		
+					System.out.println("Entree invalide!");
+					System.out.println("On recommmence. Maintenant, entrez Y ou N");
+					CentreDeTable.choixAuCentreDeTable();
+			}
+
+			if(CentreDeTable.yesOrNo.equals("N")) {
+				afficheApresChoix(s,firstIndice);
+				s=nextPlayer();
+		} else {
+			CentreDeTable.choix();
+			manche.plateaux.get(indice).afficheApresChoix(s,indice);
 			s=nextPlayer();
 		}
+		}
+		
+		System.out.println("Fin de la manche" + CommonToAllPlayers.tour);
+		CommonToAllPlayers.tour++;
 	}
-
-	public void gameWithThreePlayers() {
+	
+	public void jouerManchesEnBoucleWith3Players() {
 		remplirFabrique();
-		System.out.println();
 		System.out.println();
 		manche.consignes();
 		afficheApresChoixFirst();
@@ -64,6 +64,20 @@ public class ThreePlayers extends CommonToAllPlayers {
 		System.out.println("*****************************************************************************");
 		System.out.println();
 		afficheApresNChoix();
-		System.out.println();
+		
+		while(Manche.sac.tuiles.size()!=0) {
+			remplirFabrique();
+			System.out.println();
+			afficheApresChoixFirst();
+			afficheApresNChoix();
+		}
+		
+		System.out.println("Fin de la manche" + tour);
+		tour++;
+	}
+
+	public void gameWithThreePlayers() {
+		jouerManchesEnBoucleWith3Players();
+		System.out.println("************PARTIE TERMINEE!****************");
 	}
 }
