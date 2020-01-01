@@ -24,7 +24,7 @@ public class PlayerVue extends JPanel{
 
 
     public void affichePlayer(Graphics g){
-	g.drawImage(this.imgp,100,50,null);
+	g.drawImage(this.imgp,100,300,null);
 	g.drawString(this.prenom,100,30);
 	g.drawString("Score : "+this.score.score,100,60);
 	mesTuiles.afficheMotif(g);

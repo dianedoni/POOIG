@@ -60,7 +60,7 @@ public class FabriquesVue extends JPanel{
 	liste.get(2).posY = this.posY + 80;
 
 	liste.get(3).posX = this. posX + 80;
-	liste.get(3).posY = this. posX + 80;
+	liste.get(3).posY = this. posY + 80;
 
 	
     }

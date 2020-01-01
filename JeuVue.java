@@ -13,11 +13,11 @@ public class JeuVue extends JPanel{
     };
     protected static ETAT etat = ETAT.MENU;
     protected TuilesVue tuile;
-    protected LinkedList<PlayerVue> joueurs;
+    protected static LinkedList<PlayerVue> joueurs;
     protected LinkedList<FabriquesVue> fabriques;
     protected CentreDeTableVue centre;
-    protected static int nb_joueurs = 4;
-    protected static LinkedList<String> listeNom;
+    protected static int nb_joueurs;
+
 
 
 
@@ -31,7 +31,7 @@ public class JeuVue extends JPanel{
 	this.joueurs.add(new PlayerVue("Lamia"));
 
 	this.fabriques = new LinkedList<FabriquesVue>();
-	this.fabriques = nbFabriques(nb_joueurs);
+	this.fabriques = nbFabriques(nb_fabriques());
 
 	this.centre = new CentreDeTableVue();
 	
@@ -68,7 +68,7 @@ public class JeuVue extends JPanel{
     public void paintComponent(Graphics g){
 	if(etat == etat.JEU){
 	    for(int i = 0;i<fabriques.size();i++){
-		this.fabriques.get(0).afficheFabrique(g);
+		this.fabriques.get(i).afficheFabrique(g);
 		}
 	    this.joueurs.get(0).affichePlayer(g);
 	    this.centre.afficheCentre(g);
@@ -110,10 +110,32 @@ public class JeuVue extends JPanel{
 	return false;
     }
 
+    public int nb_fabriques(){
+	int nb = 0;
+	if(nb_joueurs == 2){
+	    nb = 5;
+	}else if(nb_joueurs == 3){
+	    nb = 7;
+	}else if(nb_joueurs == 4){
+	    nb = 9;
+	}
+	return nb;
+    }
+    
 
     public LinkedList<FabriquesVue>  nbFabriques(int n){
-	int posX = 30;
-	int posY = 15;
+	int posX=0;
+	    int posY =0;
+	if(nb_joueurs == 2){
+	posX = 300;
+	posY = 40;
+	}else if(nb_joueurs == 3){
+	posX = 100;
+	posY = 40;
+	}else if(nb_joueurs == 4){
+	posX = 30;
+	posY = 40;
+	}
 	LinkedList<FabriquesVue> liste = new LinkedList<FabriquesVue> ();
 	for(int i = 0;i<n;i++){
 	    liste.add(new FabriquesVue(posX,posY));
