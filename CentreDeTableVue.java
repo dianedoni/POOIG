@@ -1,7 +1,7 @@
 import java.util.*;
 import java.awt.*;
 import javax.swing.*;
-public class CentreDeTableVue{
+public class CentreDeTableVue extends JPanel{
     protected LinkedList<TuilesVue> centre;
     protected Image imgc;
     protected ImageIcon icoc;

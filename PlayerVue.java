@@ -1,7 +1,7 @@
 import java.util.*;
 import java.awt.*;
 import javax.swing.*;
-public class PlayerVue{
+public class PlayerVue extends JPanel{ 
     protected String prenom;
     protected int id = -1;
     protected ScoreVue score;

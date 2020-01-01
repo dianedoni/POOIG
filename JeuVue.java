@@ -22,6 +22,7 @@ public class JeuVue extends JPanel{
 
     public JeuVue(){
 	this.etat = ETAT.JEU;
+	this.setLayout(new GridLayout(3,4));
 	this.vue = new Vue();
 	this.joueurs = new LinkedList<PlayerVue>();
 	this.joueurs.add(new PlayerVue("Lamia"));
@@ -31,7 +32,10 @@ public class JeuVue extends JPanel{
 	FabriquesVue fab = new FabriquesVue();
 	this.fabriques.add(new FabriquesVue());
 	//}
+	this.add(fabriques.get(0),BorderLayout.NORTH);
 	this.centre = new CentreDeTableVue();
+	this.add(joueurs.get(0),BorderLayout.EAST);
+	this.add(centre,BorderLayout.CENTER);
     }
 
     public void paintComponent(Graphics g){

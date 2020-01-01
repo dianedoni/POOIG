@@ -1,7 +1,7 @@
 import java.awt.*;
 import javax.swing.*;
 import java.util.*;
-public class FabriquesVue{
+public class FabriquesVue extends JPanel{
     protected LinkedList<TuilesVue> fabrique1;
     protected Image imgf;
     protected ImageIcon icof;
