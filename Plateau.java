@@ -3,117 +3,181 @@ import java.util.InputMismatchException;
 
 public class Plateau {
 	protected String proprietaire;
-	protected String [] s = new String[5];
-	protected String[] mos = {"[bl]","[j]","[r]","[n]","[b]"};
-	protected static Defausse defausse;
-	protected int [] lignes = {1,2,3,4,5};
-	protected int ligneChoisie;
+	protected String [] ligne1 = {"   ","   ","   ", "   ", "[ ]"," "," ","[w]","[j]","[r]","[n]","[b]"};
+	protected String [] ligne2 = {"   ","   ","   ",  "[ ]", "[ ]"," "," ","[b]","[w]","[j]","[r]","[n]"};
+	protected String [] ligne3 = {"   ","   ",  "[ ]","[ ]","[ ]"," "," ","[n]","[b]","[w]","[j]","[r]"}; 
+	protected String [] ligne4 = {"   ", "[ ]","[ ]","[ ]","[ ]"," "," ","[r]","[n]","[b]","[w]","[j]"};
+	protected String [] ligne5 = {"[ ]","[ ]","[ ]","[ ]","[ ]"," "," ","[r]","[n]","[b]","[w]","[j]"};
+	protected Defausse def;
+	protected int indicePlateau;
+	protected static int [] lignes = {1,2,3,4,5};
+	protected static int ligneChoisie;
+	protected static int nbreAffichage=0;
+	protected static String tuileChoisie;
 	
-	public Plateau(String s) {
-		this.proprietaire = s;
-		affichePlateau();
+	public Plateau(String nom,int n) {
+		proprietaire = nom;
+		indicePlateau = n;
+		affichePlateau(nom,n);
 		System.out.println();
-		defausse = new Defausse(s);
+		def = new Defausse(nom);
 		
 	}
 
-	public int nbrePlateaux() {
-		return Manche.nbJoueurs;
+	private class Defausse{
+		//protected Joueur joueur;
+		protected String[] defausse = new String[7];
+		protected int [] n = {-1,-1,-2,-2,-2,-3,-3};
+		
+		public Defausse(String n) {
+			afficheDefausse();
+			System.out.println();
+			System.out.println("*******************************************");
+		}
+		
+		public void afficheDefausse() {
+			for(int i=0;i<n.length;i++) {
+				System.out.print(n[i] + "  ");
+			}
+			
+			System.out.println();
+			
+			for(int i=0;i<defausse.length;i++) {
+				defausse[i] = "[ ]";
+				System.out.print(defausse[i] + " ");
+			}
+		}
 	}
 	
-	public void firstLine() {
-		s[4] = "[ ]";                    
-		System.out.print(lignes[0] + "                " + s[4] + "    ");
-		for(int i=0;i<mos.length;i++) {
-			System.out.print(mos[i] + " ");
+	
+	public void firstLine(String nom,int n) {
+		int diff = 0;
+		if((nbreAffichage == 0 || ligneChoisie != 1) && proprietaire.equals(nom)) {
+		System.out.print(lignes[0] + "  ");
+		for(int i=0;i<ligne1.length;i++) {
+			System.out.print(ligne1[i] + " ");
 		}
 		System.out.println();
+		} else if(ligneChoisie == 1 && Manche.liste.get(n).nbreTuilesChoisies == 1) {
+			ligne1[4] = "["+tuileChoisie +"]";
+			System.out.print(lignes[0] + "  ");
+			for(int i=0;i<ligne1.length;i++) {
+				System.out.print(ligne1[i] + " ");
+			}
+			System.out.println();
+		} else {
+			diff = ligneChoisie-1;
+		}
 	}
 	
-	public void scndLine() {	
-		mos[0] = "[b]";
-		mos[1] = "[bl]";
-		mos[2] = "[j]";
-		mos[3] = "[r]";
-		mos[4] = "[n]";
-		s[3] = "[ ]";
-		s[4] = "[ ]"; 
-		System.out.print(lignes[1] + "            " + s[3] + " ");
-		System.out.print(s[4] + "    ");
-		for(int i=0;i<mos.length;i++) {
-			System.out.print(mos[i] + " ");
+	
+	
+	public void scndLine(String nom,int n) {	
+		int diff = 0;
+		if((nbreAffichage == 0 || ligneChoisie != 2) && proprietaire.equals(nom) ) {
+			System.out.print(lignes[1] + "  ");
+			for(int i=0;i<ligne2.length;i++) {
+				System.out.print(ligne2[i] + " ");
 		}
 		System.out.println();
+		} else if(ligneChoisie == 2) {
+			ligne2[3] = "["+tuileChoisie +"]";
+			ligne2[4] = "["+tuileChoisie +"]";	
+			System.out.print(lignes[1] + "  ");
+			for(int i=0;i<ligne2.length;i++) {
+				System.out.print(ligne2[i] + " ");
+			}
+			System.out.println();
+		} else {
+			diff = ligneChoisie-2;
+		}
 	}
 	
-	public void thrdLine() {
-		mos[0] = "[n]";
-		mos[1] = "[b]";
-		mos[2] = "[bl]";
-		mos[3] = "[j]";
-		mos[4] = "[r]";
-		s[2] = "[ ]";
-		s[3] = "[ ]";
-		s[4] = "[ ]";  
-		System.out.print(lignes[2] + "        " + s[2] + " ");
-		System.out.print(s[3] + " ");
-		System.out.print(s[4] + "    ");
-		for(int i=0;i<mos.length;i++) {
-			System.out.print(mos[i] + " ");
+	public void thrdLine(String nom,int n) {
+		int diff = 0;
+		if((nbreAffichage == 0 || ligneChoisie != 3) && proprietaire.equals(nom)) {
+			System.out.print(lignes[2] + "  ");
+			for(int i=0;i<ligne3.length;i++) {
+				System.out.print(ligne3[i] + " ");
 		}
 		System.out.println();
+		} else if(ligneChoisie == 3) {
+			ligne3[2] = "["+tuileChoisie +"]";
+			ligne3[3] = "["+tuileChoisie +"]";
+			ligne3[4] = "["+tuileChoisie +"]";
+			System.out.print(lignes[2] + "  ");
+			for(int i=0;i<ligne3.length;i++) {
+				System.out.print(ligne3[i] + " ");
+		}
+			System.out.println();
+		} else {
+			diff = ligneChoisie-3;
+		}
 	}
 	
-	public void frthLine(){
-		mos[0] = "[r]";
-		mos[1] = "[n]";
-		mos[2] = "[b]";
-		mos[3] = "[bl]";
-		mos[4] = "[j]";
-		s[1] = "[ ]";
-		s[2] = "[ ]";
-		s[3] = "[ ]";
-		s[4] = "[ ]";  
-		System.out.print(lignes[3] + "    " + s[1] + " ");
-		System.out.print(s[2] + " ");
-		System.out.print(s[3] + " ");
-		System.out.print(s[4] + "    ");
-		for(int i=0;i<mos.length;i++) {
-			System.out.print(mos[i] + " ");
+	public void frthLine(String nom,int n){
+		int diff = 0;
+		if((nbreAffichage == 0 || ligneChoisie != 4) && proprietaire.equals(nom)) {
+			System.out.print(lignes[3] + "  ");
+			for(int i=0;i<ligne4.length;i++) {
+				System.out.print(ligne4[i] + " ");
 		}
 		System.out.println();
+		} else if(ligneChoisie == 4) {
+
+			ligne4[1] = "["+tuileChoisie +"]";
+			ligne4[2] = "["+tuileChoisie +"]";
+			ligne4[3] = "["+tuileChoisie +"]";
+			ligne4[4] = "["+tuileChoisie +"]";
+			System.out.print(lignes[3] + "  ");
+			for(int i=0;i<ligne4.length;i++) {
+				System.out.print(ligne4[i] + " ");
+		}
+			System.out.println();
+		} else {
+			diff = ligneChoisie-4;
+		}
 	}
 	
-	public void fifthLine() {
-		mos[0] = "[j]";
-		mos[1] = "[r]";
-		mos[2] = "[n]";
-		mos[3] = "[b]";
-		mos[4] = "[bl]";
-		System.out.print(lignes[4] + "");
-		for(int i=0;i<s.length-1;i++) {
-			System.out.print("[ ]" + " ");
-		}
-		System.out.print(s[4] + "    ");
-		for(int i=0;i<mos.length;i++) {
-			System.out.print(mos[i] + " ");
+	public void fifthLine(String nom,int n) {
+		int diff = 0;
+		if((nbreAffichage == 0 || ligneChoisie != 5) && proprietaire.equals(nom)) {
+			System.out.print(lignes[4] + "  ");
+			for(int i=0;i<ligne5.length;i++) {
+				System.out.print(ligne5[i] + " ");
 		}
 		System.out.println();
+		
+		} else if(ligneChoisie == 5) {
+			
+			System.out.print(ligne5[4] + "    ");
+			for(int i=0;i<5;i++) {
+				System.out.print("["+tuileChoisie +"]" + " ");
+			}
+			System.out.print( "   " );
+			
+			for(int i=7;i<ligne5.length;i++) {
+				System.out.print(ligne5[i] + " ");
+			}
+			System.out.println();
+		} else {
+			diff = ligneChoisie-5;
+		}
 	}
 	
-	public void affichePlateau() {
-		firstLine();
-		scndLine();
-		thrdLine();
-		frthLine();
-		fifthLine();
+	public void affichePlateau(String nom,int n) {
+		firstLine(nom,n);
+		scndLine(nom,n);
+		thrdLine(nom,n);
+		frthLine(nom,n);
+		fifthLine(nom,n);
 	}
 	
 	public int choixDeLigne() {
 		System.out.println("sur quelle ligne desirez vous placer vos tuiles ");
 		System.out.println("Entrez un chiffre compris entre 1 et 5");
 		Scanner sc = new Scanner(System.in);
-		try { this.ligneChoisie = sc.nextInt(); }
+		try {ligneChoisie = sc.nextInt(); }
 		catch (InputMismatchException i) {
 			System.out.println("Vous deviez entrer un entier.");
 			System.out.println("Recommencez!");
@@ -122,65 +186,21 @@ public class Plateau {
 		return ligneChoisie;
 	}
 	
-	public void placerTuile(int ligne,String ch,int nbreTuilesAPlacer){
-		choixDeLigne();
-		nbreTuilesAPlacer = 4 - nbreTuilesAPlacer;
-		System.out.println("le nombre de tuiles a placer est: " + nbreTuilesAPlacer);
-		ligne = ligneChoisie;
-		int n = this.s.length;
-		int diff = 0;
-		for(int i=0;i<lignes.length;i++) {
-			if(lignes[i] == ligne) {
-				for(int j=n-ligne;j<n;j++) { 
-					if(nbreTuilesAPlacer>ligne) {
-						diff =nbreTuilesAPlacer-ligne;
-					} else {
-					for(int c=0;c<nbreTuilesAPlacer;c++) {
-						s[j] = "[" + ch + "]";
-					}
-				}
-			}
-		} else {
-				
-			}
-		}
-		affiche(ligne,ch,nbreTuilesAPlacer);
-		//afficheDefausse();
-	}
 	
 	public void addToDefausse(int n,String s) {
 		for(int a=0;a<n;a++) {
-			defausse.defausse[a] = s;
+			def.defausse[a] = s;
 		}
 	}
 	
-	public void affiche(int ligne, String ch,int nbreTuilesAPlacer) {
-		System.out.print(ligne + " ");
-		for(int i=0;i<s.length-ligne;i++) {
-			s[i] = "   ";
-			System.out.print(s[i] + " ");
-		}
-		for(int i=s.length-ligne;i<s.length;i++) {
-			s[i] = "[" + ch + "]";
-			System.out.print(s[i] + " ");
-		}
-		System.out.println();
-	}
 	
-	
-	/*public void afficheDefausse() {
-		for(int i=0;i<defausse.n.length;i++) {
-			System.out.print(defausse.n[i] + "  ");
-		}
-		
+	public void afficheApresChoix(String nom,int n) {
+		//if(nom.equals(this.proprietaire)) {
+		choixDeLigne();
+		nbreAffichage++;
+		affichePlateau(nom,n);
 		System.out.println();
-		
-		for(int i=0;i<defausse.defausse.length;i++) {
-			defausse.defausse[i] = "[ ]";
-			System.out.print(defausse.defausse[i] + " ");
-		}
-	}*/
-	public void afficheApresChoix() {
-		
+		def = new Defausse(nom);
+		//}
 	}
 }

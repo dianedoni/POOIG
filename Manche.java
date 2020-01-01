@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 
 public class Manche {
-	protected LinkedList<Joueur> liste;
+	protected static LinkedList<Joueur> liste;
 	protected CommonToAllPlayers common;
 	protected static TwoPlayers two;
 	protected static ThreePlayers three;
@@ -97,11 +97,11 @@ public class Manche {
 		 */
 		
 		public void doNotAddPlayers() {
-			if(!nbJoueurCorrect()) {
-				System.out.println("Recommencons, il ne peut y avoir moins de 2 et  plus de 4 joueurs");
+			while(!nbJoueurCorrect()) {
+				System.out.println("Recommencons, il ne peut y avoir moins de 2 et plus de 4 joueurs");
 				affichage();
-				addPlayersAux();
 			}
+			addPlayersAux();
 		}
 		
 		/*Enfin on a tous les elements necessaires
@@ -138,10 +138,8 @@ public class Manche {
 			System.out.println("la fabrique concernee en indiquant un numero entre 0 et "
 				+ (bonneFabrique()-1) + ".");
 			System.out.println("Ensuite choississez les tuiles qui vous interessent dans cette fabrique.");
-			System.out.println("Pour cela vous avez le choix entre les caracteres {R,J,B,N,BL} avec BL "
-					+ "representant le blanc.");
-			System.out.println("Mis a part cela, indiquez aussi un nombre entre 2 et 6 specifiques respectivement"
-					+ " aux tuiles {R,J,B,N,BL}");
+			System.out.println("Pour cela vous avez le choix entre les caracteres {R,J,B,N,W} avec W "
+					+ "representant le blanc, white en anglais.");
 			System.out.println();
 		}
 		
@@ -149,7 +147,7 @@ public class Manche {
 			System.out.println("Les joueurs ont donc leurs plateaux pour la construction");
 			for(int i=0;i<nbJoueurs;i++) {
 				System.out.println(liste.get(i).nom);
-				Plateau p = new Plateau(liste.get(i).nom);
+				Plateau p = new Plateau(liste.get(i).nom,i);
 				plateaux.add(i,p);
 				System.out.println();
 			}

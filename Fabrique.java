@@ -37,6 +37,8 @@ public interface Fabrique {
 	
 	public void addPlayers();
 	
+	void remplirFabrique();
+	
 	/*Apres avoir trouve le nombre de fabriques necessaires, on choisit aleatoirement 
 	 * le nom du premier joueur en se servant de firstIndice()
 	 */
@@ -72,7 +74,7 @@ public interface Fabrique {
 	
 	public void chooseTuileN(String s, String name);
 	
-	public void chooseTuileBL(String s,String name);
+	public void chooseTuileW(String s,String name);
 		
 	public void afficheApresChoixFirst();
 	
