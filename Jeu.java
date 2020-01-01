@@ -8,7 +8,7 @@ public class Jeu {
 	protected static JFrame fenetre;
 
 	
-    //gerer le cas ou ce ne serait pas un entier
+
     public static void choix(){
 
 	System.out.println("Souhaitez-vous jouer en textuel ou en interface graphique ?\n1 - textuel\n2 - interface graphique");
@@ -24,7 +24,7 @@ public class Jeu {
 
 	    }else if(tmp == 2){
 		nb_joueurs();
-		//nom_joueurs();
+		nom_joueurs();
 		fenetre = new JFrame("Azul");
 		fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		fenetre.setSize(1600,800);

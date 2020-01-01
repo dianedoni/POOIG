@@ -13,7 +13,7 @@ public class JeuVue extends JPanel{
     };
     protected static ETAT etat = ETAT.MENU;
     protected TuilesVue tuile;
-    protected static LinkedList<PlayerVue> joueurs;
+    protected static LinkedList<PlayerVue> joueurs = new LinkedList<Playervue>();
     protected LinkedList<FabriquesVue> fabriques;
     protected CentreDeTableVue centre;
     protected static int nb_joueurs;
@@ -26,9 +26,6 @@ public class JeuVue extends JPanel{
 
 	this.etat = ETAT.JEU;
 	this.vue = new Vue();
-
-	this.joueurs = new LinkedList<PlayerVue>();
-	this.joueurs.add(new PlayerVue("Lamia"));
 
 	this.fabriques = new LinkedList<FabriquesVue>();
 	this.fabriques = nbFabriques(nb_fabriques());
