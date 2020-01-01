@@ -8,10 +8,10 @@ public class Jeu {
 	protected static JFrame fenetre;
 
 	
-
+    //gerer le cas ou ce ne serait pas un entier
 	public static void choix(){
 
-	System.out.println("Souhaitez-vous jouer en textuel ou en interface graphique ?\n1 - textuel \n 2 - interface graphique");
+	System.out.println("Souhaitez-vous jouer en textuel ou en interface graphique ?\n1 - textuel\n2 - interface graphique");
 
 		Scanner sc = new Scanner(System.in);
 		int tmp = sc.nextInt();

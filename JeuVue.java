@@ -22,7 +22,7 @@ public class JeuVue extends JPanel{
 
     public JeuVue(){
 	this.etat = ETAT.JEU;
-	this.setLayout(new GridLayout(3,4));
+	//Jeu.fenetre.setLayout(new GridLayout(3,4));
 	this.vue = new Vue();
 	this.joueurs = new LinkedList<PlayerVue>();
 	this.joueurs.add(new PlayerVue("Lamia"));
@@ -32,17 +32,49 @@ public class JeuVue extends JPanel{
 	FabriquesVue fab = new FabriquesVue();
 	this.fabriques.add(new FabriquesVue());
 	//}
-	this.add(fabriques.get(0),BorderLayout.NORTH);
+	Jeu.fenetre.add(fabriques.get(0),BorderLayout.NORTH);
 	this.centre = new CentreDeTableVue();
-	this.add(joueurs.get(0),BorderLayout.EAST);
-	this.add(centre,BorderLayout.CENTER);
+	//Jeu.fenetre.add(joueurs.get(0),BorderLayout.EAST);
+	//Jeu.fenetre.add(centre,BorderLayout.CENTER);
+	//Jeu.fenetre.add(this);
+	
+	JButton rejouer = new JButton("Rejouer");
+	rejouer.addActionListener(new ActionListener(){
+
+		public void actionPerformed(ActionEvent clic){
+
+		    if(clic.getSource() == rejouer){
+			replay();
+		    }
+		}
+		
+	    });
+	this.add(rejouer);
+
+
+	JButton quitter = new JButton("Quitter");
+	quitter.addActionListener(new ActionListener(){
+
+		public void actionPerformed(ActionEvent clic){
+
+		    if(clic.getSource() == quitter){
+			System.exit(0);
+		    }
+		}
+		
+	    });
+	this.add(quitter);
+	
     }
 
     public void paintComponent(Graphics g){
 	if(etat == etat.JEU){
+	    
 	    this.fabriques.get(0).afficheFabrique(g);
 	    this.joueurs.get(0).affichePlayer(g);
 	    this.centre.afficheCentre(g);
+
+	    
 	    if(this.gagne()){
 		this.etat = etat.GAGNE;
 		Jeu.fenetre.dispose();
@@ -69,6 +101,23 @@ public class JeuVue extends JPanel{
 	}
     }
 
+
+
+    public void replay(){
+	Jeu.jeu = new JeuVue();
+	this.etat = etat.JEU;
+	Jeu.fenetre.dispose();
+	Jeu.fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	Jeu.fenetre.setSize(1600,800);
+	Jeu.fenetre.setResizable(true);
+	Jeu.fenetre.setLocationRelativeTo(null);
+	Jeu.fenetre.setContentPane(new JeuVue());
+	Jeu.fenetre.repaint();
+	Jeu.fenetre.revalidate();
+	Jeu.fenetre.setVisible(true);
+    }
+    
+    
     public boolean gagne(){
 	return false;
     }
