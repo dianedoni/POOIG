@@ -69,7 +69,7 @@ public class JeuVue extends JPanel{
 	if(etat == etat.JEU){
 	    for(int i = 0;i<fabriques.size();i++){
 		this.fabriques.get(i).afficheFabrique(g);
-		}
+	    }
 	    this.joueurs.get(0).affichePlayer(g);
 	    this.centre.afficheCentre(g);
 
@@ -124,17 +124,17 @@ public class JeuVue extends JPanel{
     
 
     public LinkedList<FabriquesVue>  nbFabriques(int n){
-	int posX=0;
-	    int posY =0;
+	int posX = 0;
+	int posY = 0;
 	if(nb_joueurs == 2){
-	posX = 300;
-	posY = 40;
+	    posX = 300;
+	    posY = 40;
 	}else if(nb_joueurs == 3){
-	posX = 100;
-	posY = 40;
+	    posX = 100;
+	    posY = 40;
 	}else if(nb_joueurs == 4){
-	posX = 30;
-	posY = 40;
+	    posX = 30;
+	    posY = 40;
 	}
 	LinkedList<FabriquesVue> liste = new LinkedList<FabriquesVue> ();
 	for(int i = 0;i<n;i++){
