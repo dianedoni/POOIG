@@ -37,9 +37,15 @@ public class TwoPlayers extends CommonToAllPlayers{
 				afficheApresChoix(s,firstIndice);
 				s=nextPlayer();
 		} else {
-			CentreDeTable.choix();
-			manche.plateaux.get(indice).afficheApresChoix(s,indice);
+			manche.plateaux.get(indice).afficheApresChoixAuCentreDeTable(s,indice);
+			if(CentreDeTable.yesOrNo.equals("N")) {
+				afficheApresChoix(s,firstIndice);
+				s=nextPlayer();
+			} else {
+			 manche.plateaux.get(indice).afficheApresChoixAuCentreDeTable(s,indice); 
+			 score( Manche.liste.get(indice),indice);
 			s=nextPlayer();
+			}
 		}
 		}
 		 System.out.println("Fin de la manche " + tour);
@@ -59,7 +65,7 @@ public class TwoPlayers extends CommonToAllPlayers{
 		System.out.println();
 		afficheApresNChoix();
 		
-		while(Manche.sac.tuiles.size()!=0) {
+		if(Manche.sac.tuiles.size()!=0) {
 			remplirFabrique();
 			System.out.println();
 			afficheApresChoixFirst();

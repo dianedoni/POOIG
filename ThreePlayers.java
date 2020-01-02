@@ -7,18 +7,18 @@ public class ThreePlayers extends CommonToAllPlayers {
 		int indice = firstIndice;
 		if(nb == 3 && indice == 0) { 
 			nb = nb - 2;
-			System.out.println("Le prochain joueur sera " + manche.liste.get(nb).nom);
-			s = manche.liste.get(nb).nom;
+			System.out.println("Le prochain joueur sera " + Manche.liste.get(nb).nom);
+			s = Manche.liste.get(nb).nom;
 			firstIndice = nb;
 		}else if(nb == 3 && indice == 1) {
 				nb = nb - 1;
-				System.out.println("Le prochain joueur sera " + manche.liste.get(nb).nom);
-				s = manche.liste.get(nb).nom;
+				System.out.println("Le prochain joueur sera " + Manche.liste.get(nb).nom);
+				s = Manche.liste.get(nb).nom;
 				firstIndice = nb;
 		} else {
 			nb = 0;
-			System.out.println("Le prochain joueur sera " + manche.liste.get(nb).nom);
-			s = manche.liste.get(nb).nom;
+			System.out.println("Le prochain joueur sera " + Manche.liste.get(nb).nom);
+			s = Manche.liste.get(nb).nom;
 			firstIndice = nb;
 		}
 		return s;
@@ -42,14 +42,19 @@ public class ThreePlayers extends CommonToAllPlayers {
 				afficheApresChoix(s,firstIndice);
 				s=nextPlayer();
 		} else {
-			CentreDeTable.choix();
-			manche.plateaux.get(indice).afficheApresChoix(s,indice);
+			manche.plateaux.get(indice).afficheApresChoixAuCentreDeTable(s,indice);
+			if(CentreDeTable.yesOrNo.equals("N")) {
+				afficheApresChoix(s,firstIndice);
+				s=nextPlayer();
+			} else {
+			 manche.plateaux.get(indice).afficheApresChoixAuCentreDeTable(s,indice); 
+			 score( Manche.liste.get(indice),indice);
 			s=nextPlayer();
+			}
 		}
 		}
-		
-		System.out.println("Fin de la manche" + CommonToAllPlayers.tour);
-		CommonToAllPlayers.tour++;
+		 System.out.println("Fin de la manche " + tour);
+		 tour++;
 	}
 	
 	public void jouerManchesEnBoucleWith3Players() {
@@ -65,7 +70,7 @@ public class ThreePlayers extends CommonToAllPlayers {
 		System.out.println();
 		afficheApresNChoix();
 		
-		while(Manche.sac.tuiles.size()!=0) {
+		if(Manche.sac.tuiles.size()!=0) {
 			remplirFabrique();
 			System.out.println();
 			afficheApresChoixFirst();

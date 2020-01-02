@@ -120,7 +120,6 @@ public class CommonToAllPlayers implements Fabrique{
 		System.out.println();
 		System.out.println("On dispose des fabriques suivantes :");
 		System.out.println("Manche " + tour);
-		System.out.println();
 		remplissage();
 		for(int i=0;i<nbFabrique();i++) {
 			System.out.print( i + "     ");
@@ -134,7 +133,7 @@ public class CommonToAllPlayers implements Fabrique{
 	
 	public String firstPlayer() {
 		System.out.println();
-		return nameFirstPlayer = manche.liste.get(firstIndice()).nom;
+		return nameFirstPlayer = Manche.liste.get(firstIndice()).nom;
 	}
 	
 	public int firstIndice() {
@@ -188,12 +187,12 @@ public class CommonToAllPlayers implements Fabrique{
 		int c = Character.getNumericValue(s.charAt(0));
 		String ch = String.valueOf(s.charAt(1));
 		if(nameFirstPlayer.equals(name)) {
-		manche.liste.get(firstIndice).afficheMosaique(tableaux.get(c),ch,nameFirstPlayer);
+		Manche.liste.get(firstIndice).afficheMosaique(tableaux.get(c),ch,nameFirstPlayer);
 		CentreDeTable.afficheCentreDeTable(tableaux.get(c),ch);
 		this.resetColor(tableaux.get(c),ch);
 		System.out.println();
 		} else {
-			manche.liste.get(firstIndice).afficheMosaique(tableaux.get(c),ch,name);
+			Manche.liste.get(firstIndice).afficheMosaique(tableaux.get(c),ch,name);
 			CentreDeTable.afficheCentreDeTable(tableaux.get(c),ch);
 			this.resetColor(tableaux.get(c),ch);
 			System.out.println();
@@ -254,7 +253,8 @@ public class CommonToAllPlayers implements Fabrique{
 		System.out.println();
 		manche.attributionPlateaux();
 		System.out.print(nameFirstPlayer + " ");
-		manche.plateaux.get(indice).afficheApresChoix(nameFirstPlayer,firstIndice);
+		manche.plateaux.get(indice).choixDeLigne();
+		score(Manche.liste.get(firstIndice), firstIndice);
 	}
 	
 	public void afficheApresChoix(String name,int indice) {
@@ -269,9 +269,25 @@ public class CommonToAllPlayers implements Fabrique{
 		}
 		System.out.println();
 		System.out.print(name + " ");
-		manche.plateaux.get(indice).afficheApresChoix(name,indice);
+		manche.plateaux.get(indice).choixDeLigne();
+		score(Manche.liste.get(indice), indice);
 	}
 	
-	
+	public void score(Joueur j,int i) {
+		System.out.println( "Le nombre de tuiles choisies est :"+(4-j.nbreTuilesChoisies));
+		System.out.println( "La ligne choisie est :"+ manche.plateaux.get(i).ligneChoisie);
+		if((4-j.nbreTuilesChoisies) == manche.plateaux.get(i).ligneChoisie) {
+			j.score++;
+		} else if((4-j.nbreTuilesChoisies)> manche.plateaux.get(i).ligneChoisie ) {
+			j.score--;
+		} else {
+			System.out.println("Vous avez encore "+ 
+			
+		(manche.plateaux.get(i).ligneChoisie-(4-j.nbreTuilesChoisies))+ " place(s) disponible(s) sur"
+				+ " la ligne " + manche.plateaux.get(i).ligneChoisie );
+		}
+		System.out.println(j.nom + " Votre score est de: " + j.score +" pour l'instant");
+		System.out.println();
+	}
 
 }

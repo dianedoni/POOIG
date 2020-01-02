@@ -8,28 +8,28 @@ public class FourPlayers extends CommonToAllPlayers{
 		int indice = firstIndice;
 		if(nb == 4 && indice == 0) { 
 			nb = nb - 3;
-			System.out.println("Le prochain joueur sera " + manche.liste.get(nb).nom);
-			s = manche.liste.get(nb).nom;
+			System.out.println("Le prochain joueur sera " + Manche.liste.get(nb).nom);
+			s = Manche.liste.get(nb).nom;
 			firstIndice = nb;
 		}
 		if(nb == 4 && indice == 1) {
 				nb = nb - 2;
-				System.out.println("Le prochain joueur sera " + manche.liste.get(nb).nom);
-				s = manche.liste.get(nb).nom;
+				System.out.println("Le prochain joueur sera " + Manche.liste.get(nb).nom);
+				s = Manche.liste.get(nb).nom;
 				firstIndice = nb;
 		}
 		
 		if( nb == 4 && indice == 2 ) {
 			nb = nb - 1;
-			System.out.println("Le prochain joueur sera " + manche.liste.get(nb).nom);
-			s = manche.liste.get(nb).nom;
+			System.out.println("Le prochain joueur sera " + Manche.liste.get(nb).nom);
+			s = Manche.liste.get(nb).nom;
 			firstIndice = nb;
 		}
 		
 		if( nb == 4 && indice == 3 ) {
 			nb = 0;
-			System.out.println("Le prochain joueur sera " + manche.liste.get(nb).nom);
-			s = manche.liste.get(nb).nom;
+			System.out.println("Le prochain joueur sera " + Manche.liste.get(nb).nom);
+			s = Manche.liste.get(nb).nom;
 			firstIndice = nb;
 		}
 		return s;
@@ -53,13 +53,19 @@ public class FourPlayers extends CommonToAllPlayers{
 				afficheApresChoix(s,firstIndice);
 				s=nextPlayer();
 		} else {
-			CentreDeTable.choix();
-			manche.plateaux.get(indice).afficheApresChoix(s,indice);
+			manche.plateaux.get(indice).afficheApresChoixAuCentreDeTable(s,indice);
+			if(CentreDeTable.yesOrNo.equals("N")) {
+				afficheApresChoix(s,firstIndice);
+				s=nextPlayer();
+			} else {
+			 manche.plateaux.get(indice).afficheApresChoixAuCentreDeTable(s,indice); 
+			 score(Manche.liste.get(indice),indice);
 			s=nextPlayer();
+			}
 		}
 		}
-		System.out.println("Fin de la manche" + tour);
-		tour++;
+		 System.out.println("Fin de la manche " + tour);
+		 tour++;
 	}
 	
 	public void jouerManchesEnBoucleWith4Players() {
@@ -75,7 +81,7 @@ public class FourPlayers extends CommonToAllPlayers{
 		System.out.println();
 		afficheApresNChoix();
 		
-		while(Manche.sac.tuiles.size()!=0) {
+		if(Manche.sac.tuiles.size()!=0) {
 			remplirFabrique();
 			System.out.println();
 			afficheApresChoixFirst();
